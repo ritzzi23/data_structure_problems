@@ -6,6 +6,9 @@ class Solution:
         def cost(i):
             if i == 0:
                 return 0
+#to calculate the cost of jumping to the first stone, we have only cost of no jump
+#therefore, we don't have cost for how the cost would be if it took 2 jumps to reach the first stone
+#that's why we return the absolute value without recursion
             if i == 1:
                 return abs(heights[1] - heights[0])
             return min(cost(i-1) + abs(heights[i] - heights[i-1]),
