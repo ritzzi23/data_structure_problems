@@ -46,3 +46,4 @@ class Solution:
                 min_cost = min(min_cost,curr_cost)
             dp[i] = min_cost
         return dp[len(heights)-1]
+#-------------------------------------------------------------------------------------------
