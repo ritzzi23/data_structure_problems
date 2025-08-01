@@ -78,3 +78,63 @@ class Solution:
         return dp[len(arr)][target]
 #-------------------------------------------------------------------------------------------
 # Space Optimized Tabulation Solution
+#------------------------------------------------------------------------------------------
+#Meet in the Middle Solution
+class Solution:
+    def perfectSum(self, arr, target):
+        n = len(arr)
+        left = arr[:n//2]
+        right = arr[n//2:]
+
+        def get_subset_sums(arr):
+            result = []
+            n = len(arr)
+            for mask in range(1 << n):
+                subset_sum = 0
+                for i in range(n):
+                    if mask & (1 << i):
+                        subset_sum += arr[i]
+                result.append(subset_sum)
+            return result
+
+        left_sums = get_subset_sums(left)
+        right_sums = get_subset_sums(right)
+        right_sums.sort()
+        count = 0
+
+        def count_frequency(arr, target):
+            # Find the first occurrence (lower bound)
+            low, high = 0, len(arr)
+            while low < high:
+                mid = (low + high) // 2
+                if arr[mid] < target:
+                    low = mid + 1
+                else:
+                    high = mid
+            first = low
+
+            # Find the position after the last occurrence (upper bound)
+            low, high = 0, len(arr)
+            while low < high:
+                mid = (low + high) // 2
+                if arr[mid] <= target:
+                    low = mid + 1
+                else:
+                    high = mid
+            last = low
+
+            return last - first
+
+        for s in left_sums:
+            required = target - s
+            count += count_frequency(right_sums, required)
+
+        return count
+        #Step 1: Calculate the total sum of the array
+        #Step 2: Check if the total sum is odd, if so return 0
+        #Step 3: Split the array into two halves
+        #Step 4: Generate all subset sums of left and right
+        #Step 5: Sort the subset sums of right
+        #Step 6: For each sum in left, calculate the required sum and count its frequency in right
+        #Step 7: Return the total count of valid pairs
+#--------------------------------------------------------------------------------------------

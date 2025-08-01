@@ -12,10 +12,12 @@ class Solution:
                 if nums[start] <= nums[end]:
                     return start
                 mid = start + (end-start)//2
-                if (mid > 0 and mid < len(nums)-1) and nums[mid] <= nums[mid-1] and nums[mid] <= nums[mid+1]:
+                if ((mid > 0 and mid < len(nums)-1) 
+                and nums[mid] <= nums[mid-1] 
+                and nums[mid] <= nums[mid+1]):
                     return mid
                 elif nums[mid] < nums[end]:
-                    end = mid -1
+                    end = mid -1              
                 else:
                     start = mid + 1
             return 0

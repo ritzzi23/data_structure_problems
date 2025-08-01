@@ -1,9 +1,5 @@
-'''You must create something that behaves like a Min Heap — starting from scratch — and 
-it should initially be empty (i.e., contain no elements)'''
-
-
 class Solution:
-
+    
     def initializeHeap(self):
         # Initialize an empty heap
         self.heap = []
@@ -95,4 +91,15 @@ class Solution:
 
     def heapSize(self):
         return len(self.heap)
+        
+    def heapSort(self, arr):
+        #code here
+        self.initializeHeap()
+        for num in arr:
+            self.insert(num)
+        sorted_arr = []
+        while not self.isEmpty():
+            sorted_arr.append(self.extractMin())
+        return sorted_arr
+        
         
