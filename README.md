@@ -120,9 +120,6 @@ Feel free to contribute by:
 - Adding better documentation
 - Optimizing algorithms
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ## 🔗 Useful Resources
 
