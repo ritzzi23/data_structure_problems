@@ -55,8 +55,8 @@ class Solution:
         return recursive_solution(len(str1)-1,len(str2)-1)
 #------------------------------------------------------------------------------------------------
 #Tabulation Solution
-#Time Complexity: O(m*n)
-#Space Complexity: O(m*n)
+#Time Complexity: O(m × n × (m + n))
+#Space Complexity: O(m × n × (m + n))
 class Solution:
     def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
         m = len(str1)
@@ -87,19 +87,32 @@ class Solution:
 #anorther approach using LCS
 class Solution:
     def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
-        def findLCS(n: int, m: int, s1: str, s2: str) -> str:        
-            dp = [[""] * (m+1) for _ in range(n+1)]
-            
-            #fill the dp table
-            for i in range(1,n+1):
-                for j in range(1,m+1):
-                    if s1[i-1] == s2[j-1]:
-                        dp[i][j] = dp[i-1][j-1] + s1[i-1]
+        def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+            m, n = len(text1), len(text2)
+            # Create a 2D dp array initialized to 0
+            dp = [[-1 for _ in range(n + 1)] for _ in range(m + 1)]
+            # intialization
+            for i in range(m+1):
+                for j in range(n+1):
+                    if i == 0 or j == 0:
+                        dp[i][j] = 0
+
+            # Fill the dp array
+            for i in range(1, m + 1):
+                for j in range(1, n + 1):
+                    if text1[i - 1] == text2[j - 1]:
+                        dp[i][j] = 1 + dp[i - 1][j - 1]
                     else:
-                        exlude_s1 = dp[i-1][j]
-                        exlude_s2 = dp[i][j-1]
-                        dp[i][j] = max(exlude_s1,exlude_s2,key=len)
-            
-            return dp[n][m]
-        
-    
+                        exclude_text1 = dp[i - 1][j]
+                        exclude_text2 = dp[i][j - 1]
+                        dp[i][j] = max(exclude_text1, exclude_text2)
+            return dp[m][n]
+        m, n = len(str1), len(str2)
+        lcs_length = longestCommonSubsequence(str1, str2)
+        # The length of the shortest common supersequence is the sum of the lengths of both strings
+        # minus the length of the longest common subsequence
+        scs_length = m + n - lcs_length
+        #Write the code to construct the shortest common supersequence
+
+
+

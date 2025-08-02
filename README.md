@@ -12,10 +12,13 @@ A comprehensive collection of data structure and algorithm problems implemented 
 
 ### Dynamic Programming
 - **0/1 Knapsack**: Classic knapsack problems and variations
-- **1D DP**: Fibonacci, climbing stairs, house robber, frog jump
+- **1D DP**: 
+  - Basic problems: Fibonacci, climbing stairs, house robber, frog jump
+  - **Kadane's Algorithm**: Maximum subarray problems
+  - **Longest Increasing Subsequence**: LIS with O(n²) and O(n log n) solutions
+  - Unbounded knapsack problems
 - **Longest Common Subsequence**: LCS problems and variations
 - **Matrix Chain Multiplication**: Dynamic programming for matrix operations
-- **Kadane's Algorithm**: Maximum subarray problems
 - **Unbounded Knapsack**: Coin change and rod cutting problems
 
 ### Graphs
@@ -61,7 +64,7 @@ A comprehensive collection of data structure and algorithm problems implemented 
 Each problem is self-contained and can be run independently. For example:
 
 ```bash
-python dynamic_programming/21_Longest_Common_Subsequence/26_minimum_number_of_insertions_and_deletions_to_convert_string_a_to_string_b.py
+python dynamic_programming/1D_DP/32_longest_increasing_subsequence/32_longest_increasing_subsequence.py
 ```
 
 ## 📚 Problem Sources
@@ -81,6 +84,7 @@ python dynamic_programming/21_Longest_Common_Subsequence/26_minimum_number_of_in
 
 ### Space Complexity Analysis
 - **Most DP problems**: O(n²) for 2D DP tables
+- **1D DP problems**: O(n) for 1D DP tables
 - **Graph algorithms**: O(V) for visited arrays, O(V²) for adjacency matrices
 - **Heap**: O(n) for storage
 - **Trie**: O(ALPHABET_SIZE * n * m) where n is number of words, m is average length
@@ -94,11 +98,16 @@ python dynamic_programming/21_Longest_Common_Subsequence/26_minimum_number_of_in
    - Binary search on answer space
 
 2. **Dynamic Programming Patterns**
-   - 0/1 Knapsack
-   - Unbounded Knapsack
-   - Longest Common Subsequence
-   - Matrix Chain Multiplication
-   - Kadane's Algorithm
+   - **1D DP Problems**:
+     - 0/1 Knapsack
+     - Unbounded Knapsack
+     - Longest Common Subsequence
+     - Matrix Chain Multiplication
+     - **Kadane's Algorithm** (Maximum Subarray)
+     - **Longest Increasing Subsequence**
+   - **2D DP Problems**:
+     - Longest Common Subsequence
+     - Matrix Chain Multiplication
 
 3. **Graph Algorithms**
    - BFS and DFS
@@ -124,7 +133,7 @@ Feel free to contribute by:
 ## 🔗 Useful Resources
 
 - [LeetCode](https://leetcode.com/)
-- [GeeksforGeeks](https://www.geeksforgeeks.org/)
+- [GeeksforGeeks](https://www.geeksforGeeks.org/)
 - [Aditya Verma Dynamic Programming Playlist](https://www.youtube.com/playlist?list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go)
 
 ---
