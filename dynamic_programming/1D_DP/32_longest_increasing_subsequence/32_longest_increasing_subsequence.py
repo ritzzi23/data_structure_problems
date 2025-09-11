@@ -65,4 +65,31 @@ class Solution:
         return max(dp)
 
 #------------------------------------------------------------------------------------------------
-        
+ #Patience Sorting Solution
+ #a[:i] < x <= a[i:]
+from typing import List
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        def searchInsert(nums: List[int], target: int) -> int:
+            low = 0
+            high = len(nums) -1
+            while low <= high:
+                mid = low + (high-low)//2
+
+                if target == nums[mid]:
+                    return mid
+                elif nums[mid] > target:
+                    high = mid -1
+                else:
+                    low = mid + 1
+            return low        
+        piles = []
+        for num in nums:
+            idx = searchInsert(piles, num)
+            #we are building a strictly increasing list, we add the number to the end of the list
+            #it works lika a monotonically increasing stack
+            if idx == len(piles):
+                piles.append(num)
+            else:
+                piles[idx] = num
+        return len(piles)

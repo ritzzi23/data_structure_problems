@@ -1,3 +1,4 @@
+#weighted undirected graph
 from typing import List
 import heapq
 
@@ -20,3 +21,8 @@ class Solution:
                     heapq.heappush(min_heap,(neighbour[1],neighbour[0]))
         return total_weight
         
+#------------------------------------------------------------------------------
+"""
+Dijkstra: Expands outward based on shortest accumulated distance from source.
+Prim: Expands outward based on cheapest edge that connects to the current tree.
+"""

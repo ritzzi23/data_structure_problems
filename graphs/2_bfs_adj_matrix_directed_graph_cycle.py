@@ -1,7 +1,6 @@
-
-
-        # code here
-        
+#this is based on topological sorting using bfs
+#time complexity: O(V+E)
+#space complexity: O(V+E)
 from typing import List
 from collections import defaultdict, deque
 class Solution:
