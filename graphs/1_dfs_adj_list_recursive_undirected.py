@@ -1,3 +1,6 @@
+#Perfect Code
+#Time Complexity: O(V + E) where V is the number of vertices and E is
+#Space Complexity: O(V) for the visited array and the recursion stack in the worst case.
 class Solution:
     def dfsOfGraph(self, V, adj):
       result = []
@@ -7,9 +10,6 @@ class Solution:
         for neigh in adj[i]:
           if not visited[neigh]:
             dfs_helper(neigh,adj,visited,result)
-      
-
-
 
       visited = [False] * len(adj)
       for i in range(len(adj)):

@@ -1,0 +1,154 @@
+'''
+Problem statement
+
+Design a data structure called LRUCache that stores key value pairs with a fixed capacity.
+
+It must support:
+
+LRUCache(capacity): initialize the cache with a maximum size
+
+get(key):
+
+return the value if the key exists, otherwise return -1
+
+mark the key as most recently used
+
+put(key, value):
+
+insert or update the key with the given value
+
+mark the key as most recently used
+
+if the cache exceeds capacity, remove the least recently used key
+
+Required complexities
+
+Time complexity
+
+get: O(1) average
+
+put: O(1) average
+
+Space complexity
+
+O(capacity)
+
+The “LRU rule” is: among all keys currently stored, the one you have not touched for the longest time gets removed.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Goal
+
+get and put should be O(1) average
+
+Evict the least recently used item when full
+
+Approaches we discussed
+
+Only dictionary (hash map)
+
+Good: O(1) lookup by key
+
+Problem: cannot quickly find which key is least recently used
+
+Dictionary with frequency
+
+Good: tracks how often keys are used
+
+Problem: solves LFU style, not LRU. Recency is different from frequency
+
+List only
+
+Good: can keep order of recency
+
+Problem: finding a key takes O(n), moving items around can be O(n)
+
+Dictionary with last_used timestamp only
+
+Good: stores recency info per key
+
+Problem: eviction needs finding minimum timestamp, which is O(n) scan
+
+Dictionary + heap (priority queue) using timestamp
+
+Good: can evict min timestamp efficiently
+
+Problem: updating priorities leads to O(log n) and stale entries, so not O(1)
+
+Dictionary + doubly linked list
+
+This is the standard: O(1) lookup + O(1) move to front + O(1) evict from back
+
+Meets time O(1) average and space O(capacity)
+
+'''
+
+
+'''
+In the brute force list version:
+
+Searching for the key takes O(n) because you scan the list.
+
+Shifting or moving an element can also cost time, but even if moving were free, you would still be stuck scanning.
+
+The optimal approach fixes this by:
+
+Using a hash map so you find the key in O(1) average
+
+Using a doubly linked list so moving a known node to the front and evicting from the back are O(1)
+
+'''
+
+
+'''
+how DLL solve this issue why not LL and why LL not any other DS
+
+Great question. The linked list is not what fixes the search bottleneck. The hashmap fixes search. The doubly linked list fixes the “reorder by recency” part in O(1).
+
+Why doubly linked list (DLL) instead of singly linked list (LL)
+
+In LRU, when you get(key) you must move that key’s node to “most recent”. That requires removing a node from the middle and inserting it at the front.
+
+With a DLL, if you already have a pointer to the node, you can remove it in O(1) because the node has:
+
+prev pointer, so you can link prev.next to next
+
+next pointer, so you can link next.prev to prev
+
+With a singly LL, if you only have a pointer to the node, you cannot unlink it in O(1) because you do not know its previous node. You would have to find the previous node by scanning from the head, which is O(n).
+
+That is the core reason DLL is used.
+
+Why a linked list at all, why not another data structure
+
+We need these operations fast:
+
+Move an accessed node to the “most recent” end in O(1)
+
+Evict the least recent node from the other end in O(1)
+
+A linked list fits because:
+
+Insert at front: O(1)
+
+Remove from back: O(1)
+
+Remove a known node from the middle: O(1) in a DLL
+
+Other common structures miss one of these:
+
+Array/list: removing or inserting near the front shifts elements, O(n)
+
+Heap: good for “min”, but updating recency on every access gives O(log n) and stale entries issues
+
+Balanced BST: O(log n)
+
+Queue/deque alone: can pop ends, but cannot remove an arbitrary middle node in O(1)
+
+So the combo is:
+
+Hashmap gives O(1) find key
+
+DLL gives O(1) remove and reinsert for recency
+'''

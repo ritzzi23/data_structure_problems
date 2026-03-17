@@ -1,0 +1,37 @@
+is it like two pointers always work with sorted arrays
+Mostly yes, but not always. Here's the full picture:
+
+Why sorting helps two pointers
+Two pointers work by making a directional decision — "move left" or "move right." That only works when you can predict what moving in a direction will do to your result.
+
+Sorted arrays give you that guarantee:
+
+Moving right → value increases. Moving left → value decreases.
+
+Without sorting, moving right could give you anything — you'd have no basis for a decision.
+
+Cases where sorting is NOT needed
+| Problem | Why no sort needed |
+|---|---|| Linked List cycle detection (fast/slow pointers) | Pointers move at different speeds, not based on values |
+| Remove duplicates from sorted array | Already sorted by definition |
+| Sliding window (subarray sum, longest substring) | Pointers define a window, not comparing values |
+| Palindrome check | Just comparing characters from both ends |
+| Merge two sorted arrays | Already sorted |
+
+The real rule
+Two pointers need predictability — some property that tells you which direction to move. Sorting is the most common way to get that, but not the only way.
+
+The pattern is really:
+
+
+Can I decide "move left or right" based on current state?
+├── Yes, via sorted order     → sort first
+├── Yes, via window size      → sliding window (no sort)
+└── Yes, via pointer speed    → fast/slow pointers (no sort)
+For LeetCode problems specifically
+If you see:
+
+"find pairs/triplets/quadruplets that sum to X" → sort + two pointers
+"subarray with condition" → sliding window (no sort)
+"cycle in linked list" → fast/slow (no sort)
+Sorting + two pointers is one flavor of the two-pointer family — just the most common one you'll see in array problems.

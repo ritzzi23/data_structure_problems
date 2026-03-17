@@ -1,3 +1,7 @@
+#Reverse a singly linked list
+#Time Complexity: O(n)
+#Space Complexity: O(1) for iterative approach and O(n) for recursive approach due
+
 from typing import List
 from typing import Optional
 
@@ -16,6 +20,9 @@ class Solution:
             curr = nxt
         return prev
 #------------------------------
+#Time Complexity: O(n)
+#Space Complexity: O(n) for recursive approach
+
 
 # Definition for singly-linked list.
 # class ListNode:

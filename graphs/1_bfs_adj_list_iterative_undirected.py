@@ -1,3 +1,6 @@
+#Time Complexity: O(V + E) where V is the number of vertices and E is the number of edges.
+#Space Complexity: O(V) for the visited array and the queue in the worst case.
+#Iterative BFS implementation for an undirected graph using adjacency list representation.
 from collections import deque
 class Solution:
     def bfsOfGraph(self, V, adj):

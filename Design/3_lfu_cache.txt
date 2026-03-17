@@ -1,0 +1,43 @@
+'''
+Least Frequently Used.
+
+What the LFU Cache question is asking
+
+You must design a cache with a fixed capacity that supports:
+
+get(key)
+
+If key exists: return its value
+
+Also, using it increases its frequency count by 1
+
+If not: return -1
+
+put(key, value)
+
+If capacity is 0, do nothing
+
+If key already exists: update its value, and this counts as a use, so frequency increases by 1
+
+If key is new and cache is full: you must evict an item
+
+Eviction rule in LFU
+
+When cache is full and you insert a new key:
+
+Evict the key with the lowest frequency
+
+If multiple keys tie with the same lowest frequency, evict the one that is least recently used among that tied group
+
+So LFU is really:
+
+First priority: smallest frequency
+
+Tie breaker: oldest usage time within that frequency
+
+Why it is harder than LRU
+
+LRU tracks only recency.
+LFU tracks frequency plus recency as a tie breaker.
+'''
+
