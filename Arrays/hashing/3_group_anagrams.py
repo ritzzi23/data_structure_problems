@@ -13,8 +13,8 @@ class Solution:
         return list(groups.values())
         
 #---------------------------    
-#Time complexity: O(n)
-#Space complexity: O(1)
+#Time complexity:  O(n · k)
+#Space complexity: O(n · k)
 #Approach 2: Counting Key
 
 class Solution:

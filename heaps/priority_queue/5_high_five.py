@@ -14,7 +14,7 @@ class Solution:
             total = 0
             for k in range(5):
                 total += v[k]
-            total = total//5
+            total = total//5 #floor division (used when we need to round down)(no decimals needed)
             result.append((i,total))
         result.sort(key=lambda x:x[0])
         return result
@@ -44,4 +44,22 @@ class Solution:
 
         result.sort(key=lambda x: x[0])  # Time Complexity: O(m log m)
         return result
-        
+
+#--------------------------------
+#https://enginebogie.com/public/question/calculate-maximum-average-score/1925
+#Time Complexity: O(n)
+#Space Complexity: O(n)
+def max_average_score(scores):
+    hash_map = {}
+    for name, score in scores:
+        if name not in hash_map:
+            hash_map[name] = []
+        hash_map[name].append(int(score))
+    
+    max_avg = float('-inf')
+    for name in hash_map:
+        avg = sum(hash_map[name]) / len(hash_map[name])
+        if avg > max_avg:
+            max_avg = avg
+    
+    return max_avg
