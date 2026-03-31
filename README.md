@@ -6,7 +6,7 @@ A comprehensive collection of data structure and algorithm problems implemented 
 
 ### Arrays
 - **Two Pointers**: Two Sum, Two Sum II, 3Sum, 4Sum, Container With Most Water, Trapping Rain Water, Is Subsequence, Boats to Save People
-- **Hashing**: Find Duplicates, Valid Anagram, Group Anagrams, HashSet/HashMap Design, Longest Consecutive Sequence, First Unique Character, Fraction to Recurring Decimal
+- **Hashing**: Find Duplicates, Valid Anagram, Group Anagrams, HashSet/HashMap Design, Longest Consecutive Sequence, First Unique Character, Fraction to Recurring Decimal, Find Most Occurring IP Address
 - **Sliding Window**
   - *Fixed Window*: Maximum Sum of Distinct Subarrays with Length K, Sliding Window Maximum
   - *Variable Window*: Longest Substring with At Most K Distinct Characters, Longest Substring Without Repeating Characters, Longest Repeating Character Replacement, Minimum Size Subarray Sum, Minimum Window Substring
@@ -17,7 +17,7 @@ A comprehensive collection of data structure and algorithm problems implemented 
 - **Classic Binary Search**: Bisect/Search Insert Position, Search in sorted array, Count occurrences, First/Last position
 - **Rotated Sorted Arrays**: Find minimum, Search in rotated array
 - **Peak Binary Search**: Find peak element
-- **Binary Search on Answers**: Square root, Median of two sorted arrays, Kth element of two sorted arrays
+- **Binary Search on Answers**: Square root, Square Root to N Decimal Places, Median of Two Sorted Arrays, Kth element of two sorted arrays
 - **Matrix Search**: Search a 2D Matrix, Search a 2D Matrix II
 
 ### Dynamic Programming
@@ -50,7 +50,7 @@ A comprehensive collection of data structure and algorithm problems implemented 
 - **Binary Heap**: Min heap implementation from scratch
 - **Heap Operations**: Insert, delete, heapify
 - **Heap Sort**: Sorting using heap data structure
-- **Priority Queue**: Kth Largest Element in a Stream, Last Stone Weight, Kth Largest Element in an Array, Find Median from Data Stream, High Five
+- **Priority Queue**: Kth Largest Element in a Stream, Last Stone Weight, Kth Largest Element in an Array, Find Median from Data Stream, High Five, Maximum Average Score
 
 ### Intervals
 - Insert Interval (for loop & while loop approaches)
