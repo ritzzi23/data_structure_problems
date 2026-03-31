@@ -5,28 +5,30 @@ A comprehensive collection of data structure and algorithm problems implemented 
 ## Repository Structure
 
 ### Arrays
-- **Two Pointers**: Two Sum, 3Sum, 4Sum, Container With Most Water, Trapping Rain Water
-- **Hashing**: Find Duplicates, Valid Anagram, Group Anagrams, HashSet/HashMap Design
-- **Sliding Window**: Fixed and variable window problems (longest substring, minimum subarray)
+- **Two Pointers**: Two Sum, Two Sum II, 3Sum, 4Sum, Container With Most Water, Trapping Rain Water, Is Subsequence, Boats to Save People
+- **Hashing**: Find Duplicates, Valid Anagram, Group Anagrams, HashSet/HashMap Design, Longest Consecutive Sequence, First Unique Character, Fraction to Recurring Decimal
+- **Sliding Window**
+  - *Fixed Window*: Maximum Sum of Distinct Subarrays with Length K, Sliding Window Maximum
+  - *Variable Window*: Longest Substring with At Most K Distinct Characters, Longest Substring Without Repeating Characters, Longest Repeating Character Replacement, Minimum Size Subarray Sum, Minimum Window Substring
 - **Prefix/Suffix Arrays**: Trapping Rain Water
-- **Matrix**: 2D array problems
-- **Sorting**: Sort an Array, Top K Frequent Elements, Dutch National Flag
+- **Sorting**: Sort an Array, Top K Frequent Elements, Encode and Decode Strings, Dutch National Flag (Sort Colors)
 
 ### Binary Search
-- **Classic Binary Search**: Search in sorted array, count occurrences, first/last position
-- **Rotated Sorted Arrays**: Find minimum, search in rotated array
-- **Peak Binary Search**: Find peak elements
-- **Binary Search on Answers**: Square root, median of sorted arrays, kth element
+- **Classic Binary Search**: Bisect/Search Insert Position, Search in sorted array, Count occurrences, First/Last position
+- **Rotated Sorted Arrays**: Find minimum, Search in rotated array
+- **Peak Binary Search**: Find peak element
+- **Binary Search on Answers**: Square root, Median of two sorted arrays, Kth element of two sorted arrays
+- **Matrix Search**: Search a 2D Matrix, Search a 2D Matrix II
 
 ### Dynamic Programming
-- **0/1 Knapsack**: Subset sum, partition equal subset, count of subsets
-- **1D DP**: Fibonacci, climbing stairs, house robber, frog jump
-- **Kadane's Algorithm**: Maximum subarray, maximum product subarray
+- **1D DP**: Fibonacci, Climbing Stairs, House Robber I & II, Frog Jump
+- **0/1 Knapsack**: Subset Sum, Partition Equal Subset Sum, Count of Subsets, Subset Sum Closest to Target
+- **Unbounded Knapsack**: Coin Change I & II, Knapsack with Duplicate Items, Minimum Cost to Cut a Stick
+- **Kadane's Algorithm**: Maximum Subarray, Maximum Product Subarray, Maximum Sum Circular Subarray
 - **Longest Increasing Subsequence**: LIS with O(n^2) and O(n log n) solutions
-- **Longest Common Subsequence**: LCS, shortest common supersequence
+- **Longest Common Subsequence**: LCS, Longest Common Substring, Print LCS, Shortest Common Supersequence, Min Insertions/Deletions, Longest Palindromic Subsequence, Longest Repeating Subsequence
 - **Matrix Chain Multiplication**: MCM and variations
-- **Unbounded Knapsack**: Coin change, rod cutting
-- **DP on Stocks**: Stock trading problems
+- **DP on Stocks**: Best Time to Buy and Sell Stock
 
 ### Design
 - **LRU Cache**: Least Recently Used cache implementation
@@ -35,51 +37,67 @@ A comprehensive collection of data structure and algorithm problems implemented 
 - **Circular Queue**: Design circular queue
 
 ### Graphs
-- **BFS/DFS**: Breadth-first and depth-first search implementations
-- **Cycle Detection**: Detect cycles in directed and undirected graphs
-- **Shortest Paths**: Dijkstra's, Bellman-Ford algorithms
+- **BFS/DFS**: Adjacency list implementations (iterative & recursive), Number of Islands, Clone Graph, Flood Fill, Island Perimeter, Max Area of Island, 01 Matrix, Word Ladder, Is Graph Bipartite, Shortest Path in Binary Matrix
+- **Multi-Source BFS**: Rotting Oranges, Walls and Gates, Flood Fill
+- **Cycle Detection**: Detect cycles in directed and undirected graphs, Graph Valid Tree, Redundant Connection
+- **Shortest Paths**: Dijkstra's (heap implementation), Bellman-Ford, Network Delay Time, Shortest Path in DAG
 - **Minimum Spanning Tree**: Prim's and Kruskal's algorithms
-- **Topological Sort**: Kahn's algorithm and DFS-based approach
-- **Disjoint Set Union**: Union-Find problems
-- **Practice Problems**: Number of Islands, Clone Graph, Island Perimeter
+- **Topological Sort**: Kahn's algorithm (BFS), DFS-based, Course Schedule I/II/IV, Alien Dictionary, Find Eventual Safe States
+- **Disjoint Set Union**: Union-Find, Connected Components, Graph Valid Tree, Find Root of Largest Tree in a Forest
+- **Connected Components**: Number of Provinces, Number of Connected Components
 
 ### Heaps
-- **Binary Heap**: Implementation from scratch
+- **Binary Heap**: Min heap implementation from scratch
 - **Heap Operations**: Insert, delete, heapify
 - **Heap Sort**: Sorting using heap data structure
+- **Priority Queue**: Kth Largest Element in a Stream, Last Stone Weight, Kth Largest Element in an Array, Find Median from Data Stream, High Five
+
+### Intervals
+- Insert Interval (for loop & while loop approaches)
+- Merge Intervals
+- Non-Overlapping Intervals
+- Meeting Rooms
 
 ### Linked Lists
-- **Basic Operations**: Reverse, merge two sorted lists, cycle detection, reorder
-- **Advanced Problems**: Add two numbers, remove nth node, reverse in k-group
-- **Design**: Merge K sorted lists, design circular queue, find duplicate number
+- **Basic Operations**: Reverse (singly & doubly), Merge two sorted lists, Cycle detection, Reorder
+- **Advanced Problems**: Add Two Numbers I & II, Remove Nth node, Reverse in K-group, Reverse Linked List II, Find Duplicate Number
+- **Design**: Merge K sorted lists, Design Circular Queue
+
+### Math
+- Reverse Integer
+
+### Recursion
+- **Simulation**: Josephus Problem (Find the Winner of the Circular Game)
 
 ### Stacks
 - **Implementations**: Stack using arrays, queues, linked lists
-- **Basic Problems**: Valid parentheses, min stack
-- **Monotonic Stack/Queue**: Next greater element, sliding window maximum
+- **Basic Problems**: Valid Parentheses, Min Stack
+- **Infix to Postfix**: Conversion using stack
+- **Monotonic Stack**: Next Greater Element I & II, Next Smaller Element, Trapping Rain Water, Sum of Subarray Minimums, Asteroid Collision
+- **Monotonic Deque**: Sliding Window Maximum
 
 ### Strings
-- **String Manipulation**: Anagrams, isomorphic strings, rotations
-- **Pattern Matching**: KMP algorithm, longest prefix suffix
-- **Encoding**: Encode and decode strings
-- **Character Frequency**: Sort by frequency, Roman to integer
+- String Compression, First Unique Character, Longest Common Prefix, Isomorphic Strings, Rotate String, Longest Prefix Suffix, KMP Algorithm, Valid Anagram, Sort Characters by Frequency, Roman to Integer, Reverse Words in a String
+
+### Trees
+- **Traversals**: Inorder, Preorder, Postorder, Level Order I & II, Right Side View
+- **Primary Concepts**: Height of Tree
+- **DFS**: Balanced Binary Tree
+- **Binary Search Tree**: Convert Sorted Array/List to BST, Validate BST
+- **Classic Problems**: Invert Binary Tree, Maximum Depth, Diameter, Path Sum I & II, Same Tree, Lowest Common Ancestor, Maximum Path Sum, Completeness Check, Boundary Traversal, Vertical Order Traversal, Bottom View, Construct from Inorder/Preorder/Postorder, Amount of Time for Binary Tree to Be Infected
 
 ### Trie
-- **Prefix Tree**: Basic trie implementation
-- **Advanced Trie**: Trie with count operations
+- **Prefix Tree**: Basic trie implementation, Trie with count operations
 - **Longest Common Prefix**: Using trie
 
 ### Bit Manipulation
-- **Power Operations**: Power of two, power set
-- **Bit Operations**: Check if bit is set
+- Power of Two, Power Set, Check if i-th Bit is Set
 
 ### Sorting
-- **Merge Sort**: Divide and conquer sorting
-- **Dutch National Flag**: Three-way partitioning
+- Merge Sort
 
-### Trees
-- **Traversals**: Inorder, preorder, postorder
-- **Vertical Order Traversal**
+### In-Built Functions
+- List Pop, List Remove
 
 ## Getting Started
 
