@@ -1,3 +1,10 @@
+'''Recursive DFS is the most common interview solution
+Iterative DFS is good when you want explicit stack handling
+BFS is also correct and easy to visualize level by level'''
+
+
+
+
 from typing import List, Optional
 from collections import deque
 

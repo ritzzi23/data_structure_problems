@@ -18,7 +18,7 @@ class Solution:
         if not self.heap:
             return -1
         min_val = self.heap[0]
-        #taje the last element and put it at the root
+        #take the last element and put it at the root
         last_val = self.heap.pop()
         if self.heap:
             self.heap[0] = last_val

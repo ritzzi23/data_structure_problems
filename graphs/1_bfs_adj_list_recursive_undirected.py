@@ -1,3 +1,10 @@
+
+#Nothing different from iterative approach
+#We just remove the while loop and use recursion
+
+#Time Complexity: O(V + E)
+#Space Complexity: O(V)
+
 from collections import deque
 class Solution:
     def bfsOfGraph(self, V, adj):

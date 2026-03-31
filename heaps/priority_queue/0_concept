@@ -1,0 +1,42 @@
+'''Python's heapq module is the only built-in way to implement a priority queue
+queue.PriorityQueue is just a wrapper around heapq with thread-safety added
+There's no separate "PriorityQueue" data structure that uses a different implementation
+
+
+heapq is a binary min heap, period.
+
+It uses a plain Python list as the underlying array
+Every parent ≤ its children (min heap property)
+Each node has at most 2 children (binary)
+It's the same logic as your scratch implementation
+
+
+One key thing — heapq only provides a min heap. If you want a max heap, you have to hack it:
+
+
+import heapq
+
+# Max heap workaround: negate the values
+pq = []
+heapq.heappush(pq, -5)
+heapq.heappush(pq, -3)
+heapq.heappush(pq, -8)
+
+max_val = -heapq.heappop(pq)  # returns 8
+Mapping your code to heapq:
+
+
+
+VV.IMP Heap is not a sorted array
+
+| Your method      | heapq equivalent                |
+|------------------|---------------------------------|
+| insert(key)      | heapq.heappush(heap, key)       |
+| extractMin()     | heapq.heappop(heap)             |
+| getMin()         | heap[0]                         |
+| _heapifyUp       | Done internally by heappush     |
+| _heapifyDown     | Done internally by heappop      |
+| changeKey()      | No direct equivalent            |
+| buildHeap()      | heapq.heapify(list)             |
+
+So yes — heapq is just a well-optimized version of exactly what you built from scratch.'''

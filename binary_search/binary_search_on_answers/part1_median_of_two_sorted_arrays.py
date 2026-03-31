@@ -46,6 +46,7 @@ class Solution:
         else:
             return merged[n // 2]
 #---------------------------------------------------------------------------------------------
+#app 1
 #Merge Two Sorted Arrays Approach
 #time complexity: O(m + n)
 #space complexity: O(m + n) for the merged array

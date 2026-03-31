@@ -1,0 +1,216 @@
+'''Just refine it a little.
+
+If we keep one fully sorted array/list, then when a new element comes:
+
+we can find its correct position fast
+but to actually place it there, elements after that position may need to shift
+
+So worst case insertion becomes O(n).
+
+That is the problem.
+
+But with two heaps, we are not trying to maintain full sorted order.
+
+We are only maintaining enough structure to answer the median:
+
+left side gives the largest value from the lower part
+right side gives the smallest value from the upper part
+
+Those are exactly the 1 or 2 center-side values we need.
+
+So yes, the idea is:
+
+full sorted order is more than what median needs
+maintaining more information costs more
+two heaps maintain only the useful middle boundary
+that is why insertion becomes cheaper, O(log n)'''
+
+
+
+'''No, it is not overfitting.
+
+It is actually a very general pattern.
+
+What is true is this:
+
+the exact two-heaps median template is specialized for median-like problems
+but the thinking behind it is very general
+Why it is not overfitting
+
+This solution is based on a broad idea:
+
+Do not maintain more information than the query needs.
+Maintain only the boundary information that matters.
+
+That is a very reusable idea in data structures.
+
+In this problem:
+
+full sorted order is too much
+median only needs the middle boundary
+so we maintain just enough structure to recover that boundary
+
+That is not overfitting.
+That is good data structure design.
+
+What is the general pattern here?
+
+The pattern is:
+
+identify what the query really needs
+avoid storing stronger structure than necessary
+maintain only the useful summary or boundary
+choose data structures that make updates cheap and queries cheap
+
+That pattern is used everywhere.
+
+Where this same thinking appears
+1. Running median
+
+This exact problem
+
+Maintain:
+
+lower half
+upper half
+
+Because median depends on the split.
+
+2. Kth largest in a stream
+
+You do not keep everything fully sorted.
+
+You keep only a min heap of size k.
+
+Why?
+
+Because the query only needs the kth largest, not full order.
+
+Same idea:
+
+maintain only what matters
+3. Top K frequent elements
+
+You do not sort all frequencies fully every time.
+
+You use:
+
+heap
+bucket sort
+frequency map
+
+Again:
+
+only preserve enough structure for top-k query
+4. Merge intervals / meeting rooms style problems
+
+You often do not keep every detail perfectly arranged.
+You keep the key boundary:
+
+earliest ending time
+current overlap count
+active intervals
+
+Again:
+
+maintain the critical frontier, not everything
+5. Sliding window maximum
+
+You use a deque.
+
+Why not sort each window?
+
+Because the query only needs the max of the current active window.
+
+So again:
+
+maintain only useful candidates
+throw away useless order information
+
+Very similar philosophy.
+
+6. Dijkstra / Prim
+
+Priority queues again.
+
+Why?
+
+Because at each step, you only need the next best frontier node or edge.
+
+Not full sorted structure of everything.
+
+Again:
+
+maintain query-relevant boundary
+What is specific and what is general?
+Specific
+
+“Use one max heap and one min heap for median in a stream.”
+
+That exact template is specific.
+
+General
+
+“Split the data around the query boundary and maintain only the important edge values.”
+
+That idea is highly general.
+
+A better way to think about it
+
+This is not overfitting.
+
+This is a case of:
+
+the query shape determines the data structure shape
+
+Examples:
+
+median query → split around center
+kth largest query → keep best k
+max-in-window query → keep only useful max candidates
+minimum active end time query → min heap of ends
+
+This is exactly how strong problem solving works.
+
+Why it feels problem-specific
+
+It feels specific because median is a very special statistic.
+
+Median is about the center split.
+
+So the solution mirrors that very directly:
+
+left side
+right side
+center boundary
+
+That direct match can feel “too custom.”
+
+But that is actually a good sign, not a bad sign.
+
+The best data structure solutions often mirror the math definition of the query.
+
+When would it actually be overfitting?
+
+It would be overfitting if the method depended on accidental details of the problem statement that do not matter.
+
+For example:
+
+relying on some arbitrary test pattern
+using hacks that only work because of one narrow constraint
+building a structure that cannot justify itself from the query logic
+
+That is not what is happening here.
+
+The two-heaps solution is justified directly from the definition of median.
+
+Stronger statement
+
+This approach is a special case of a broader family:
+
+online algorithms
+order statistics maintenance
+balanced partition data structures
+query-driven state maintenance
+
+So it is actually connected to many advanced topics.'''

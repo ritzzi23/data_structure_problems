@@ -9,6 +9,7 @@ def insertKey (x):
     heap[curr_size] = x
     curr_size += 1
     heapifyUp(curr_size-1)
+    
 #Function to delete a key at ith index.
 def heapifyUp (i):
     while i> 0:

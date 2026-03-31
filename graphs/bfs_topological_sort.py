@@ -1,6 +1,9 @@
 from typing import List
 from collections import deque
 
+#Time Complexity: O(V+E)
+#Space Complexity: O(V)
+
 class Solution:
     def topoSort(self, N: int, adj: List[List[int]]) -> List[int]:
         # Initialize indegree list with zeros

@@ -1,7 +1,6 @@
 '''You must create something that behaves like a Min Heap — starting from scratch — and 
 it should initially be empty (i.e., contain no elements)'''
 
-
 class Solution:
 
     def initializeHeap(self):
@@ -65,8 +64,8 @@ class Solution:
             #assume the current index is the smallest
             smallest = i
             # Find the left and right children indices
-            left = 2* i + 1
-            right = 2* i + 2
+            left = 2 * i + 1
+            right = 2 * i + 2
             # Compare the current element with its children
             #if the left child is smaller than the current element, update smallest
             #if the right child is smaller than the smallest, update smallest

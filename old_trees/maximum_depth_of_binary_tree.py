@@ -7,7 +7,10 @@ class TreeNode:
         self.left = left
         self.right = right
 
-        
+#Approach 1: BFS + Queue
+#Total Time Complexity: O(n)
+#Total Space Complexity: O(n)
+
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
@@ -24,6 +27,10 @@ class Solution:
             level += 1
         return level
 #-----------------------------------------------------------------------
+#Approach 2: DFS + Recursion
+#Total Time Complexity: O(n)
+#Total Space Complexity: O(n)
+
 from typing import List, Optional
 from collections import deque
 

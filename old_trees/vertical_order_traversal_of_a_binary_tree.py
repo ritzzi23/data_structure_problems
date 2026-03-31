@@ -30,7 +30,14 @@ class Solution:
         sorted_col_table = sorted(col_table.keys())
         return [col_table[col] for col in sorted_col_table]
 
+'''
+node_list.sort(key=lambda x:(x[0],x[1],x[2]))
+This means:
+first sort by col
+if same col, sort by row
+if same row and col, sort by value
 
+That is exactly the ordering required by the problem.'''
 
 
 

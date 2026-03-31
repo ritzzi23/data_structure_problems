@@ -12,17 +12,15 @@ Space Complexity: O(n) for the stack and the next_greater dictionary, both of wh
 #
 # Example:
 #   nums1 = [1, 2],  nums2 = [4, 1, 2, 3]
-#   Output: [3, 3]
+#   Output: [2, 3]
 #   Explanation:
-#     1 -> next greater in nums2 after 1 is 2? no, 3? yes -> 3
+#     1 -> next greater in nums2 after 1 is 2 -> 2
 #     2 -> next greater in nums2 after 2 is 3 -> 3
 
-from typing import List
-
 class Solution:
-    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    def nextGreaterElement(self, nums1: list[int], nums2: list[int]) -> list[int]:
 
-        stack = []          # Waiting room: numbers waiting to find their boss
+        stack: list[int] = []  # Waiting room: numbers waiting to find their boss
         next_greater = {}   # Maps each number -> its next greater element (boss)
 
         # Walk through every number in nums2, left to right
@@ -44,13 +42,13 @@ class Solution:
         # For every number in nums1, look up its boss in our dictionary
         # If not found (still in waiting room), return -1
         # Same thing, written out plainly
-result = []
-for n in nums1:
-    if n in next_greater:
-        result.append(next_greater[n])   # found a boss → add it
-    else:
-        result.append(-1)                # no boss found → add -1
-return result
+        result = []
+        for n in nums1:
+            if n in next_greater:
+                result.append(next_greater[n])   # found a boss → add it
+            else:
+                result.append(-1)                # no boss found → add -1
+        return result
 
 
 

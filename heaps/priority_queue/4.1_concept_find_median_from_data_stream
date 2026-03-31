@@ -1,0 +1,45 @@
+'''
+There are 2 things we maintain:
+
+partition order
+every element in left heap <= every element in right heap
+size balance
+the heaps should be almost equal in size
+
+Without the size rule, the partition alone is not enough to get the median.
+'''
+
+#How many elements should go in each heap?
+'''
+If n is even
+Both heaps should have the same number of elements.
+So:
+
+left heap size = n/2
+right heap size = n/2
+
+
+
+If n is odd
+One heap must have one extra element.
+
+Usually we choose:
+
+left heap size = n//2 + 1
+right heap size = n//2
+
+So left heap has one extra.
+
+
+We maintain:
+
+len(left) == len(right)
+or
+len(left) == len(right) + 1
+
+
+
+So final computation rule is
+even → (-left[0] + right[0]) / 2
+odd → -left[0]
+'''

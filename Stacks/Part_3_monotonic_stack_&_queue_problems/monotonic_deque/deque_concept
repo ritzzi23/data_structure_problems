@@ -1,0 +1,44 @@
+from collections import deque
+
+dq = deque([1, 2, 3])
+
+dq.append(4)         # deque([1, 2, 3, 4])
+dq.appendleft(0)     # deque([0, 1, 2, 3, 4])
+dq.pop()             # removes 4
+dq.popleft()         # removes 0
+dq.rotate(1)         # deque([3, 1, 2])
+
+
+
+
+Deque always keeps indices in such a way that:
+
+'front is always largest element for current window'
+elements are in decreasing order by value
+useless smaller elements are removed immediately
+expired elements are removed when they leave window
+
+So every index is:
+
+added once
+removed at most once
+
+That is why total work is linear.
+
+
+
+
+Why from the front only?
+
+Because deque stores indices in increasing order of index.
+
+That means:
+
+oldest index is always at front
+newest index is always at back
+
+So when a window moves forward, the element that expires first is always the oldest one.
+
+And the oldest one is at the front.
+
+That is why expired elements are checked and removed from the front.

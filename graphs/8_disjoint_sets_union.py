@@ -1,7 +1,11 @@
+#Time Complexity: O(α(n)) where α is the inverse Ackermann function
 class DisjointSet:
     def __init__(self, n: int):
+        #every component is its own parent initially
         self.parent = [i for i in range(n)]
+        #every component has rank 1 initially
         self.rank = [1 for _ in range(n)]
+        #every component has size 1 initially
         self.size = [1 for _ in range(n)]
 
     def findParent(self, u: int) -> int:
