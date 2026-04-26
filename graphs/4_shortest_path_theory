@@ -1,0 +1,133 @@
+'''
+=== SHORTEST PATH ALGORITHMS — Complete Theory & Classification ===
+
+=====================================================================
+SECTION 1: Your Shortest Path Coverage
+=====================================================================
+
+    #   Algorithm                    Status          Files in Repo
+    --- ---------------------------- --------------- -------------------------------------------------
+    1   BFS (unit weights)           ✅ Done          4_shortest_path_in_undirected_graph_with_unit_weights_bfs.py
+    2   Topo Sort + Relaxation (DAG) ✅ Done          shortest_path_in_directed_acyclic_graph_topological_sort.py
+                                                      practice_problems_shortest_distance/1_shortest_path_in_directed_acyclic_graph.py
+    3   Dijkstra's                   ✅ 3 versions    5_shortest_path_graph_dijikstra.py
+                                                      5_heap_implementation_shortest_path_graph_dijikstra.py
+                                                      5_heapq_implementation_shortest_path_graph_dijikstra.py
+    4   Bellman-Ford                 ✅ 2 versions    6_negative_weights_shortest_path_graph_bellman_ford.py
+                                                      6_undirected_negative_weights_shortest_path_graph_bellman_ford.py
+    5   Floyd-Warshall               ❌ Missing       —
+    6   0-1 BFS                      ❌ Missing       —
+
+
+=====================================================================
+SECTION 2: Classification by Source Type & Edge Weights
+=====================================================================
+
+--- SINGLE SOURCE (one start node → all other nodes) ---
+
+    Weights                        Algorithm                Time            
+    ----------------------------- ------------------------ ----------------
+    Unweighted (all edges = 1)     BFS                      O(V + E)        
+    Weighted, 0 or 1 only          0-1 BFS (deque)          O(V + E)        
+    Weighted, positive only (DAG)  Topo Sort + Relaxation   O(V + E)        
+    Weighted, positive (general)   Dijkstra's               O((V+E) log V)  
+    Weighted, negative allowed     Bellman-Ford              O(V * E)        
+
+--- MULTI SOURCE / ALL PAIRS (every node → every node) ---
+
+    Weights                        Algorithm                Time
+    ----------------------------- ------------------------ ----------------
+    Any (positive or negative)     Floyd-Warshall           O(V³)
+
+
+=====================================================================
+SECTION 3: Decision Tree — Which Algorithm to Pick?
+=====================================================================
+
+    Shortest Path Problem
+    ├── Single Source?
+    │   ├── Unweighted?
+    │   │   └── BFS                          (O(V+E))
+    │   ├── Weights are only 0 or 1?
+    │   │   └── 0-1 BFS                      (O(V+E), deque-based)
+    │   ├── Positive weights?
+    │   │   ├── Is it a DAG?
+    │   │   │   └── Topo Sort + Relaxation   (O(V+E), fastest!)
+    │   │   └── General graph?
+    │   │       └── Dijkstra's               (O((V+E) log V))
+    │   └── Negative weights?
+    │       └── Bellman-Ford                  (O(V*E), detects negative cycles)
+    │
+    └── All Pairs? (every node to every node)
+        └── Floyd-Warshall                   (O(V³), DP on adjacency matrix)
+
+
+=====================================================================
+SECTION 4: Key Nuances — What Each Algorithm Can/Cannot Handle
+=====================================================================
+
+    Algorithm        Negative Weights?   Detects Negative Cycles?   Graph Type
+    --------------- ------------------- -------------------------- -------------------
+    BFS              ❌ No               ❌ No                       Unweighted only
+    0-1 BFS          ❌ No               ❌ No                       Weights 0 or 1 only
+    Topo Sort        ✅ Yes              N/A (DAGs can't have cycles) DAG only
+    Dijkstra's       ❌ No               ❌ No                       Non-negative weights
+    Bellman-Ford     ✅ Yes              ✅ Yes                      Any (single-source)
+    Floyd-Warshall   ✅ Yes              ✅ Yes                      Any (all-pairs)
+
+
+=====================================================================
+SECTION 5: Quick Notes & Fun Facts
+=====================================================================
+
+    - Topo Sort + Relaxation handles NEGATIVE weights in DAGs — since DAGs
+      have no cycles, negative weights can't create infinite loops.
+      It's also the fastest single-source algo at O(V+E).
+
+    - Dijkstra FAILS with negative weights because once it "finalizes" a
+      node's distance, it never revisits it. A negative edge could later
+      provide a shorter path that Dijkstra already skipped.
+
+    - Bellman-Ford detects negative cycles by running V-1 relaxation passes.
+      If distances still decrease on the V-th pass → negative cycle exists.
+
+    - Floyd-Warshall uses DP: for each intermediate node k, check if going
+      through k gives a shorter path: dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+    - 0-1 BFS optimization: push weight-0 edges to the FRONT of a deque,
+      weight-1 edges to the BACK. This avoids the overhead of a priority queue.
+'''
+
+
+
+
+Shortest Path in an Undirected Graph — Which Algorithm to Use
+It depends entirely on the type of edge weights:
+
+Scenario	Algorithm	Time Complexity	Why
+Unweighted (all edges = 1)	BFS	O(V + E)	Layer-by-layer expansion naturally finds shortest hops
+Weighted (non-negative)	Dijkstra's	O((V + E) log V)	Greedy — always expands the cheapest unvisited node via a min-heap
+Weighted (with negatives, no negative cycles)	Bellman-Ford	O(V × E)	Relaxes all edges V−1 times; handles negative weights safely
+Quick Decision Flowchart
+Is the graph unweighted (or all weights = 1)?
+├── YES → Use BFS ✅  (fastest, simplest)
+└── NO → Are all weights ≥ 0?
+    ├── YES → Use Dijkstra's ✅
+    └── NO → Are there negative-weight edges?
+        └── YES → Use Bellman-Ford ✅
+
+
+
+
+✅ Use BFS When:
+Shortest path in unweighted graphs (its superpower)
+Level-order traversal (e.g., tree levels, "minimum moves" problems)
+Target is likely close to the source (BFS finds it faster without diving deep)
+Multi-source BFS — e.g., "rotting oranges," "nearest gate" problems
+✅ Use DFS When:
+Cycle detection — tracking the recursion stack makes it natural (like your 2_dfs_adj_matrix_directed_graph_cycle.py)
+Topological sort — DFS post-order gives you the ordering
+Connected components / island counting — just flood-fill each component
+Path existence — "does ANY path exist?" (not shortest, just yes/no)
+Backtracking problems — permutations, combinations, maze solving with constraints
+Graph is very deep but narrow — DFS uses less memory than BFS here

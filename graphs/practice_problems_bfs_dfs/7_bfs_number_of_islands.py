@@ -1,6 +1,6 @@
 #time Complexity: O(M * N) where M is the number of rows and N is the number of columns in the grid.
 #space Complexity: O(min(M,N)) for the queue in the worst case.
-
+#best solution
 from collections import deque
 from typing import List
 class Solution:
@@ -13,8 +13,6 @@ class Solution:
             #check if current positions if not valid
             if (i<0  or i>= rows) or (j<0 or j>= columns):
                 return
-
-
 
             grid[i][j] = "0"
             que = deque([(i,j)])
@@ -70,5 +68,49 @@ class Solution:
                     islands += 1
 
         return islands
+#----------------------------------------------------------------------
+#Time Complexity: O(m∗n∗α(m∗n)) approximately O(M*N)
+#Space Complexity: O(M * N) for the parent and rank arrays
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        parent = [k for k in range(rows* cols)]
+        rank = [1 for _ in range(rows*cols)]   
+        count = [0] 
+
+        def find_parent(x):
+            if parent[x] != x:
+                parent[x] = find_parent(parent[x])
+            return parent[x]
+
+        def union_by_rank(a, b):
+            pa = find_parent(a)
+            pb = find_parent(b)
+            if pa == pb:
+                return
+            if rank[pa] < rank[pb]:
+                parent[pa] = pb
+            elif rank[pb] < rank[pa]:
+                parent[pb] = pa
+            else:
+                parent[pa] = pb
+                rank[pb] += 1
+            count[0] -= 1
+
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == '1':
+                    count[0] += 1
+                    idx = i * cols + j
+                    if j + 1 < cols and grid[i][j + 1] == '1':
+                        union_by_rank(idx, i * cols + (j + 1))
+                    if i + 1 < rows and grid[i + 1][j] == '1':
+                        union_by_rank(idx, (i + 1) * cols + j)
+
+        return count[0]
+
+
+        
 
         

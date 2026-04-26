@@ -1,3 +1,5 @@
+#This is a decision problem
+
 #Pure Recursive Solution
 from typing import List
 class Solution:
@@ -11,6 +13,24 @@ class Solution:
         return cost(0)
 #-------------------------------------------------------------------------------------------
 # Memoization Solution
+#
+#dp[i] is max amount robbed till ith house 
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n = len(nums)
+        memo = {}
+        def helper(n):
+            if n<1:
+                return 0
+
+            if n not in memo:
+                memo[n] = max(
+                    helper(n-1), #skip
+                    helper(n-2) + nums[n-1]
+                )
+            return memo[n]
+        return helper(n)
+
 class Solution:
     def rob(self, nums: List[int]) -> int:
         memo = {}
@@ -29,6 +49,21 @@ class Solution:
 # Tabulation Solution
 #time complexity: O(n)
 #space complexity: O(n) for dp array
+
+
+#dp[i] is max amount robbed till ith house 
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [0] * (n+1)
+        dp[0] = 0
+        for i in range(1,n+1):
+            dp[i] = max(
+                dp[i-1], #skip
+                dp[i-2] + nums[i-1] #selecting current house
+            )
+        return dp[n]
+
 from typing import List
 class Solution:
     def rob(self, nums: List[int]) -> int:

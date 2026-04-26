@@ -35,3 +35,29 @@ a = Solution()
 V = 5
 adj = [[2, 3, 1], [0], [0, 4], [0], [2]]
 print(a.bfsOfGraph(V, adj))
+
+#---------------------------------------------------------
+#I wrote this one (with helper function)
+
+from collections import deque
+
+class Solution:
+    def bfsOfGraph(self, V, adj):
+        def bfs_helper(queue, V, adj, results, visited): #Time Complexity: O(V + E)
+            while queue: #Time Complexity: O(V + E) 
+                node = queue.popleft()
+                results.append(node)
+                for neigh in adj[node]: #Time Complexity: O(E)
+                    if not visited[neigh]:
+                        visited[neigh] = True
+                        queue.append(neigh)
+
+        queue = deque()
+        results = []
+        visited = [False] * V
+        for i in range(V):
+            if not visited[i]:
+                visited[i] = True
+                queue.append(i)
+                bfs_helper(queue, V, adj, results, visited)
+        return results

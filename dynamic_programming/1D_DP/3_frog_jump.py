@@ -1,3 +1,4 @@
+#This is a cost minimization problem 
 #Pure recursive solution
 #time complexity: O(2^n)
 #space complexity: O(n) for recursion stack
@@ -5,7 +6,7 @@ class Solution:
     def frogJump(self, heights):
         def cost(i):
             if i == 0:
-                return 0
+                return 0    
 #to calculate the cost of jumping to the first stone, we have only cost of no jump
 #therefore, we don't have cost for how the cost would be if it took 2 jumps to reach the first stone
 #that's why we return the absolute value without recursion

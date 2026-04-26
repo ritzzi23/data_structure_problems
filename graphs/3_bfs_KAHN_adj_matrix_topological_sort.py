@@ -9,6 +9,7 @@ class Solution:
             adj_list[u].append(v)
         
         #indegree_creation
+        #In-degree = "how many things I'm still waiting on."
         in_degree = [0] * V
         for u in range(V):
             for v in adj_list[u]:
@@ -33,3 +34,9 @@ class Solution:
         return result
         
             
+'''
+In-degree = "how many things I'm still waiting on."
+When you pop node from the queue and add it to the result, 
+that node is done/scheduled. So every neighbor that was 
+depending on it now has one less thing to wait for.
+'''

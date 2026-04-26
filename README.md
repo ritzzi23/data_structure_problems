@@ -1,12 +1,13 @@
 # Data Structure and Algorithm Problems
 
-A comprehensive collection of **261 data structure and algorithm problems** implemented in Python, organized by topic and pattern. Each solution includes multiple approaches — from brute force to optimized — with detailed time/space complexity analysis and dry runs.
+A comprehensive collection of **261+ data structure and algorithm problems** implemented in Python, organized by topic and pattern. Each solution includes multiple approaches — from brute force to optimized — with detailed time/space complexity analysis and dry runs.
 
 ## Repository Stats
 
 | Metric | Value |
 |---|---|
 | **Total Problems** | 261 |
+| **Theory Notes** | 4 topics (DP, Kadane's, Shortest Path, DSU) |
 | **Language** | Python 3.7+ |
 | **Topics Covered** | 18 |
 | **Approach Style** | Recursive → Memoized → Tabulated → Space-Optimized |
@@ -32,19 +33,20 @@ A comprehensive collection of **261 data structure and algorithm problems** impl
 | **Peak Binary Search** | Find Peak Element, Find the Peaks |
 | **Binary Search on Answers** | Square Root of a Number, Square Root to N Decimal Places, Median of Two Sorted Arrays (3 approaches), Kth Element of Two Sorted Arrays |
 
-### Dynamic Programming (35 problems)
+### Dynamic Programming (35 problems + theory notes)
 | Sub-Topic | Problems |
 |---|---|
 | **1D DP** | Fibonacci Number, Climbing Stairs, Min Cost Climbing Stairs, Frog Jump, Frog Jump with K Distances (Forward + Back approach), House Robber I & II |
 | **Kadane's Algorithm** | Maximum Subarray, Maximum Product Subarray, Maximum Sum Circular Subarray, Divide & Conquer Maximum Subarray |
-| **0/1 Knapsack** | 0/1 Knapsack Problem, Subset Sum Problem, Partition Equal Subset Sum (DP + Meet-in-the-Middle), Count of Subsets with Given Sum, Subset Sum Closest to Target, Partition Array to Minimize Sum Difference, Ones and Zeroes |
+| **0/1 Knapsack** | 0/1 Knapsack Problem, Subset Sum Problem, Partition Equal Subset Sum (DP + Meet-in-the-Middle), Count of Subsets with Given Sum, Subset Sum Closest to Target, Partition Array to Minimize Sum Difference, Ones and Zeroes *(in progress)* |
 | **Unbounded Knapsack** | Knapsack with Duplicate Items, Minimum Cost to Cut a Stick, Coin Change, Coin Change II |
-| **Longest Common Subsequence** | LCS, Longest Common Substring, Print LCS, Shortest Common Supersequence, Min Insertions/Deletions to Convert String, Longest Palindromic Subsequence, Minimum Insertion Steps to Make Palindrome, Longest Repeating Subsequence |
+| **Longest Common Subsequence / DP on Strings** | LCS, Longest Common Substring, Print LCS, Shortest Common Supersequence, Min Insertions/Deletions to Convert String, Longest Palindromic Subsequence, Minimum Insertion Steps to Make Palindrome, Longest Repeating Subsequence |
 | **Longest Increasing Subsequence** | LIS with O(n²) and O(n log n) solutions |
 | **Matrix Chain Multiplication** | MCM and variations |
 | **DP on Stocks** | Best Time to Buy and Sell Stock |
+| **Theory** | DP Theory fundamentals, Kadane's Algorithm theory |
 
-### Graphs (68 problems)
+### Graphs (68 problems + theory notes)
 | Sub-Topic | Problems |
 |---|---|
 | **BFS/DFS Fundamentals** | Adjacency List BFS (Iterative & Recursive), Adjacency List DFS (Iterative & Recursive) |
@@ -55,6 +57,7 @@ A comprehensive collection of **261 data structure and algorithm problems** impl
 | **Shortest Path Algorithms** | Dijkstra's (3 implementations: basic, heap, heapq), Bellman-Ford (directed & undirected), Shortest Path in DAG, Network Delay Time |
 | **Minimum Spanning Tree** | Prim's Algorithm, Kruskal's Algorithm (using DSU) |
 | **Disjoint Set Union** | Union-Find Implementation, Cycle Detection with DSU, Connected Components, Graph Valid Tree, Find Root of Largest Tree in Forest |
+| **Theory** | Shortest Path theory, Disjoint Set Union theory |
 
 ### Heaps (8 problems)
 | Sub-Topic | Problems |
@@ -88,7 +91,7 @@ A comprehensive collection of **261 data structure and algorithm problems** impl
 | **Classic Problems** | Invert Binary Tree, Maximum Depth, Diameter, Path Sum I & II, Same Tree, Lowest Common Ancestor, Maximum Path Sum, Completeness Check, Boundary Traversal, Vertical Order Traversal, Bottom View, Construct from Inorder + Preorder/Postorder, Amount of Time for Binary Tree to Be Infected |
 
 ### Strings (13 problems)
-String Compression, First Unique Character, Longest Common Prefix, Isomorphic Strings, Rotate String, Longest Prefix Suffix, KMP Algorithm, Valid Anagram, Sort Characters by Frequency, Roman to Integer, Reverse Words in a String, Largest Odd Number in String, Regex Pattern
+String Compression, First Unique Character, Longest Common Prefix, Isomorphic Strings, Rotate String, Longest Prefix Suffix, KMP Algorithm, Valid Anagram, Sort Characters by Frequency, Roman to Integer, Reverse Words in a String, Largest Odd Number in String, Regex Pattern Matching
 
 ### Intervals (5 problems)
 Insert Interval (For Loop & While Loop approaches), Merge Intervals, Non-Overlapping Intervals, Meeting Rooms
@@ -159,22 +162,25 @@ data_structure_problems/
 │   ├── 2_binary_search_on_rotated_sorted_array/
 │   ├── 3_peak_binary_search/
 │   └── binary_search_on_answers/
-├── dynamic_programming/             # 35 problems
+├── dynamic_programming/             # 35 problems + theory
 │   ├── 1D_DP/
+│   │   ├── 0_DP_Theory
 │   │   └── Kadane_algorithm/
 │   ├── 7_dp_on_subsequences/
 │   │   ├── 7_0_1_knapsack/
+│   │   │   └── leetcode_practice/
 │   │   └── 14_unbounded_knapsack/
-│   ├── 21_Longest_Common_Subsequence/
+│   ├── 21_Longest_Common_Subsequence_or_dp_on_strings/
 │   ├── 32_longest_increasing_subsequence/
 │   ├── 40_matrix_chain_multiplication/
 │   └── DP_on_stocks/
-├── graphs/                          # 68 problems
+├── graphs/                          # 68 problems + theory
 │   ├── practice_problems_bfs_dfs/
 │   ├── problems_bfs_dfs/
 │   │   └── multi_source_bfs/
 │   ├── practice_problems_dsu/
 │   ├── practice_problems_shortest_distance/
+│   │   └── single_source_shortest_path/
 │   ├── practice_topo_sort/
 │   └── undirected_cycle/
 ├── heaps/                           # 8 problems

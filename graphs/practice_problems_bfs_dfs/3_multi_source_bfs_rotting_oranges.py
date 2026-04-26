@@ -61,3 +61,43 @@ Pacific Atlantic Water Flow
 Number of Islands
 Max Area of Island
 Surrounded Regions'''
+
+
+#----------------------------------------------------------------------------------------------
+#Time Complexity: O(N*M)
+#Space Complexity: O(N*M) for the queue in the worst case when all oranges are
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        queue = deque()
+        fresh = 0
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 2:
+                    node = (i,j,0)
+                    queue.append(node)
+                    grid[i][j] = -1
+                elif grid[i][j] == 1:
+                    fresh += 1
+        
+        directions = [(-1,0),(1,0),(0,1),(0,-1)]
+        time = 0
+        while queue:
+            r,c,t = queue.popleft()
+            time = max(time,t)
+
+            for dr,dc in directions:
+                nr, nc = r + dr, c + dc
+                #if any next element is fresh with rotten then it will be rotten in +1 time
+                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
+                    grid[nr][nc] = -1
+                    fresh -= 1
+                    new_node = (nr,nc,t+1)
+                    queue.append(new_node)
+        return time if fresh == 0 else -1
+
+
+
+        
+        

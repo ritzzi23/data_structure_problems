@@ -1,0 +1,288 @@
+Dynamic Programming - Theory to Tackle Any Problem
+
+What is DP?
+
+Optimization over pure recursion by storing results of subproblems
+Only works when problem has overlapping subproblems and optimal substructure
+
+
+Step 1: Identify if it's a DP problem
+
+Problem asks for count (how many ways), min/max (shortest path, max profit), or can/cannot (is it possible)
+You see choices at each step (take or skip, go left or right, use 1 step or 2 steps)
+Brute force leads to exponential recursion with repeated subproblems
+
+
+Step 2: Define the State
+
+State = the minimum information needed to describe a subproblem
+Ask yourself: "what changes between subproblems?"
+Example: dp[i] means number of ways to reach step i
+Can be 1D, 2D, 3D depending on how many variables change
+
+
+Step 3: Find the Recurrence (Transition)
+
+How does current state depend on previous states?
+Example: dp[i] = dp[i-1] + dp[i-2]
+This comes from the choices you can make at each step
+
+
+Step 4: Identify Base Cases
+
+What are the smallest subproblems you can solve directly?
+Example: dp[0] = 0, dp[1] = 1
+Without these, recursion never stops
+
+
+Step 5: Choose Direction
+
+Top Down - start from n, recurse down, use memo to cache
+Bottom Up - start from base cases, build up using loop
+Both give same answer, bottom up avoids stack overflow
+
+
+Step 6: Space Optimize (if possible)
+
+Check these 3 conditions:
+
+Fixed lookback (only needs last k values, not entire table)
+No path reconstruction needed
+Predictable dependencies
+
+
+If all 3 hold, replace array with k variables
+
+
+The 4 Stage Progression (always follow this order)
+Pure Recursion → Memo (Top Down) → Tabulation (Bottom Up) → Space Optimized
+O(2^n)           O(n)              O(n)                      O(n) time, O(1) space
+
+Template
+python# 1. Define state
+# dp[i] means ___
+
+# 2. Base cases
+dp[0], dp[1] = __, __
+
+# 3. Recurrence
+for i in range(start, n+1):
+    dp[i] = f(dp[i-1], dp[i-2], ...)  # transition
+
+# 4. Answer
+return dp[n]
+
+
+================================================================================
+                        COMPLETE DP ROADMAP & PROGRESS TRACKER
+================================================================================
+
+Legend:
+  ✅ = Done (file exists in repo)
+  ⬜ = Not started yet
+  📂 = File location relative to dynamic_programming/
+
+
+================================================================================
+CATEGORY 1: Intro to DP (Foundation)
+================================================================================
+Builds intuition for recursion → memoization → tabulation → space optimization.
+
+| #  | Problem                        | Status | File Location                                     | Link                                                              |
+|----|--------------------------------|--------|----------------------------------------------------|-------------------------------------------------------------------|
+| 01 | Fibonacci Number               | ✅     | 📂 1D_DP/1_fibonacci_number.py                     | LC 509  https://leetcode.com/problems/fibonacci-number/           |
+| 02 | Climbing Stairs                | ✅     | 📂 1D_DP/2_climbing_stairs.py                      | LC 70   https://leetcode.com/problems/climbing-stairs/            |
+| 03 | Min Cost Climbing Stairs       | ✅     | 📂 1D_DP/2.5_min_cost_climbing_stairs.py           | LC 746  https://leetcode.com/problems/min-cost-climbing-stairs/   |
+
+
+================================================================================
+CATEGORY 2: 1D DP (Linear Problems)
+================================================================================
+Single-dimensional state. Builds on "take or skip" logic from intro.
+
+| #  | Problem                        | Status | File Location                                          | Link                                                                       |
+|----|--------------------------------|--------|--------------------------------------------------------|----------------------------------------------------------------------------|
+| 04 | Frog Jump (GFG)                | ✅     | 📂 1D_DP/3_frog_jump.py                               | GFG  https://www.geeksforgeeks.org/problems/frog-jump/1                    |
+| 05 | Frog Jump with K Distances     | ✅     | 📂 1D_DP/4_forward_approach_frog_jump_with_k_distances.py | GFG variant                                                            |
+|    |                                | ✅     | 📂 1D_DP/4_back_approach_frog_jump_with_k_distances.py    |                                                                        |
+| 06 | House Robber                   | ✅     | 📂 1D_DP/5_house_robber.py                            | LC 198  https://leetcode.com/problems/house-robber/                        |
+| 07 | House Robber II                | ✅     | 📂 1D_DP/6_house_robber_ii.py                         | LC 213  https://leetcode.com/problems/house-robber-ii/                     |
+| 08 | Maximum Subarray (Kadane)      | ✅     | 📂 1D_DP/Kadane_algorithm/maximum_subarray.py          | LC 53   https://leetcode.com/problems/maximum-subarray/                    |
+| 09 | Maximum Product Subarray       | ✅     | 📂 1D_DP/Kadane_algorithm/maximum_product_subarray.py  | LC 152  https://leetcode.com/problems/maximum-product-subarray/            |
+| 10 | Max Sum Circular Subarray      | ⬜     | 📂 1D_DP/Kadane_algorithm/maximum_sum_circular_subarray.py | LC 918 https://leetcode.com/problems/maximum-sum-circular-subarray/    |
+| 11 | Decode Ways                    | ⬜     |                                                        | LC 91   https://leetcode.com/problems/decode-ways/                         |
+| 12 | Word Break                     | ⬜     |                                                        | LC 139  https://leetcode.com/problems/word-break/                          |
+
+
+================================================================================
+CATEGORY 3: 2D/3D DP & Grids
+================================================================================
+State depends on two or more variables (row, col) or (day, last_choice).
+
+| #  | Problem                        | Status | File Location | Link                                                                         |
+|----|--------------------------------|--------|---------------|------------------------------------------------------------------------------|
+| 13 | Ninja's Training               | ⬜     |               | CN  https://www.naukri.com/code360/problems/ninja-s-training_3621003         |
+| 14 | Unique Paths                   | ⬜     |               | LC 62   https://leetcode.com/problems/unique-paths/                          |
+| 15 | Unique Paths II (Obstacles)    | ⬜     |               | LC 63   https://leetcode.com/problems/unique-paths-ii/                       |
+| 16 | Minimum Path Sum               | ⬜     |               | LC 64   https://leetcode.com/problems/minimum-path-sum/                      |
+| 17 | Triangle                       | ⬜     |               | LC 120  https://leetcode.com/problems/triangle/                              |
+| 18 | Min Falling Path Sum           | ⬜     |               | LC 931  https://leetcode.com/problems/minimum-falling-path-sum/              |
+| 19 | Cherry Pickup II (3D)          | ⬜     |               | LC 1463 https://leetcode.com/problems/cherry-pickup-ii/                      |
+
+
+================================================================================
+CATEGORY 4: DP on Subsequences / 0-1 Knapsack
+================================================================================
+"Take it or leave it" pattern. State: dp[index][capacity/sum].
+
+| #  | Problem                              | Status | File Location                                                          | Link                                                                              |
+|----|--------------------------------------|--------|------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| 20 | 0/1 Knapsack                         | ✅     | 📂 1D_DP/7_0_1_knapsack/7_0_1_knapsack_problem.py                     | GFG  https://www.geeksforgeeks.org/problems/0-1-knapsack-problem/1                |
+| 21 | Subset Sum Problem                   | ✅     | 📂 1D_DP/7_0_1_knapsack/8_subset_sum_problem.py                       | GFG  https://www.geeksforgeeks.org/problems/subset-sum-problem/1                  |
+| 22 | Partition Equal Subset Sum           | ✅     | 📂 1D_DP/7_0_1_knapsack/9_partition_equal_subset_sum.py               | LC 416 https://leetcode.com/problems/partition-equal-subset-sum/                  |
+|    | (MITM approach)                      | ✅     | 📂 1D_DP/7_0_1_knapsack/9_mitm_partition_equal_subset_sum.py          |                                                                                   |
+| 23 | Count of Subset with Given Sum       | ✅     | 📂 1D_DP/7_0_1_knapsack/10_count_of_subset_with_given_sum.py          | GFG  https://www.geeksforgeeks.org/problems/perfect-sum-problem/1                 |
+| 24 | Minimum Subset Sum Difference        | ✅     | 📂 1D_DP/7_0_1_knapsack/12_partition_array_into_two_arrays_to_minimize_sum_difference.py | LC 2035 / GFG variant                                            |
+| 25 | Count of Subset with Given Difference| ⬜     |                                                                        | GFG variant                                                                       |
+| 26 | Target Sum                           | ⬜     |                                                                        | LC 494  https://leetcode.com/problems/target-sum/                                 |
+
+
+================================================================================
+CATEGORY 5: DP on Subsequences / Unbounded Knapsack
+================================================================================
+Items can be picked unlimited times. State: dp[index][capacity].
+
+| #  | Problem                        | Status | File Location                                                   | Link                                                                       |
+|----|--------------------------------|--------|-----------------------------------------------------------------|----------------------------------------------------------------------------|
+| 27 | Unbounded Knapsack             | ✅     | 📂 1D_DP/14_unbounded_knapsack/14_knapsack_with_duplicate_items.py | GFG  https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items/1 |
+| 28 | Rod Cutting                    | ⬜     |                                                                 | GFG  https://www.geeksforgeeks.org/problems/rod-cutting/1                  |
+| 29 | Minimum Cost to Cut a Stick    | ✅     | 📂 1D_DP/14_unbounded_knapsack/15_minimum_cost_to_cut_a_stick.py| LC 1547 https://leetcode.com/problems/minimum-cost-to-cut-a-stick/         |
+| 30 | Coin Change (Min Coins)        | ✅     | 📂 1D_DP/14_unbounded_knapsack/16_coin_change.py               | LC 322  https://leetcode.com/problems/coin-change/                         |
+| 31 | Coin Change II (Max Ways)      | ⬜     | 📂 1D_DP/14_unbounded_knapsack/17_coin_change_ii.py (empty)    | LC 518  https://leetcode.com/problems/coin-change-ii/                      |
+
+
+================================================================================
+CATEGORY 6: DP on Strings / LCS Pattern
+================================================================================
+Two sequences compared character by character. State: dp[i][j] = LCS of s1[0..i] and s2[0..j].
+
+| #  | Problem                                       | Status | File Location                                                                              | Link                                                                               |
+|----|-----------------------------------------------|--------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| 32 | Longest Common Subsequence                    | ✅     | 📂 21_Longest_Common_Subsequence/22_longest_common_subsequence.py                          | LC 1143 https://leetcode.com/problems/longest-common-subsequence/                   |
+| 33 | Longest Common Substring                      | ✅     | 📂 21_Longest_Common_Subsequence/23_longest_common_substring.py                            | GFG  https://www.geeksforgeeks.org/problems/longest-common-substring/1              |
+| 34 | Print LCS                                     | ✅     | 📂 21_Longest_Common_Subsequence/24_print_longest_common_subsequence.py                    | GFG variant                                                                        |
+| 35 | Shortest Common Supersequence                 | ✅     | 📂 21_Longest_Common_Subsequence/25_shortest_common_supersequence.py                       | LC 1092 https://leetcode.com/problems/shortest-common-supersequence/                |
+| 36 | Min Insert/Delete to Convert A to B           | ✅     | 📂 21_Longest_Common_Subsequence/26_minimum_number_of_insertions_and_deletions_to_convert_string_a_to_string_b.py | LC 583 https://leetcode.com/problems/delete-operation-for-two-strings/ |
+| 37 | Longest Palindromic Subsequence               | ✅     | 📂 21_Longest_Common_Subsequence/27_longest_palindromic_subsequence.py                     | LC 516  https://leetcode.com/problems/longest-palindromic-subsequence/              |
+| 38 | Min Insertion to Make String Palindrome       | ✅     | 📂 21_Longest_Common_Subsequence/28_minimum_insertion_steps_to_make_a_string_palindrome.py | LC 1312 https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/ |
+| 39 | Longest Repeating Subsequence                 | ✅     | 📂 21_Longest_Common_Subsequence/29_longest_repeating_subsequence.py                       | GFG  https://www.geeksforgeeks.org/problems/longest-repeating-subsequence/1         |
+| 40 | Sequence Pattern Matching (Is Subsequence)    | ⬜     |                                                                                            | LC 392  https://leetcode.com/problems/is-subsequence/                               |
+| 41 | Edit Distance                                 | ⬜     |                                                                                            | LC 72   https://leetcode.com/problems/edit-distance/                                |
+| 42 | Distinct Subsequences                         | ⬜     |                                                                                            | LC 115  https://leetcode.com/problems/distinct-subsequences/                        |
+
+
+================================================================================
+CATEGORY 7: DP on Stocks
+================================================================================
+Buy/sell decisions across days. State: dp[day][txn_count][holding].
+
+| #  | Problem                                       | Status | File Location                                        | Link                                                                                        |
+|----|-----------------------------------------------|--------|------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| 43 | Best Time to Buy and Sell Stock               | ✅     | 📂 DP_on_stocks/1_best_time_to_buy_and_sell_stock.py | LC 121  https://leetcode.com/problems/best-time-to-buy-and-sell-stock/                      |
+| 44 | Best Time to Buy and Sell Stock II             | ⬜     |                                                      | LC 122  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/                   |
+| 45 | Best Time to Buy and Sell Stock III            | ⬜     |                                                      | LC 123  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/                  |
+| 46 | Best Time to Buy and Sell Stock IV             | ⬜     |                                                      | LC 188  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/                   |
+| 47 | Best Time with Cooldown                        | ⬜     |                                                      | LC 309  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/        |
+| 48 | Best Time with Transaction Fee                 | ⬜     |                                                      | LC 714  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/ |
+
+
+================================================================================
+CATEGORY 8: DP on LIS (Longest Increasing Subsequence)
+================================================================================
+Classic LIS and its variations. State: dp[i] = length of LIS ending at index i.
+
+| #  | Problem                                  | Status | File Location                                                     | Link                                                                              |
+|----|------------------------------------------|--------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| 49 | Longest Increasing Subsequence           | ✅     | 📂 1D_DP/32_longest_increasing_subsequence/32_longest_increasing_subsequence.py | LC 300 https://leetcode.com/problems/longest-increasing-subsequence/ |
+| 50 | Print LIS                                | ⬜     |                                                                   | Variant                                                                           |
+| 51 | Longest String Chain                     | ⬜     |                                                                   | LC 1048 https://leetcode.com/problems/longest-string-chain/                       |
+| 52 | Longest Bitonic Subsequence              | ⬜     |                                                                   | GFG  https://www.geeksforgeeks.org/problems/longest-bitonic-subsequence/1         |
+| 53 | Number of LIS                            | ⬜     |                                                                   | LC 673  https://leetcode.com/problems/number-of-longest-increasing-subsequence/   |
+
+
+================================================================================
+CATEGORY 9: MCM / Partition DP / Interval DP
+================================================================================
+Split problem into partitions, try all split points. State: dp[i][j] = cost for range [i..j].
+
+| #  | Problem                        | Status | File Location                                                 | Link                                                                        |
+|----|--------------------------------|--------|---------------------------------------------------------------|-----------------------------------------------------------------------------|
+| 54 | Matrix Chain Multiplication    | ✅     | 📂 40_matrix_chain_multiplication/40_matrix_chain_multiplication.py | GFG  https://www.geeksforgeeks.org/problems/matrix-chain-multiplication/1 |
+| 55 | Palindrome Partitioning II     | ⬜     |                                                               | LC 132  https://leetcode.com/problems/palindrome-partitioning-ii/           |
+| 56 | Burst Balloons                 | ⬜     |                                                               | LC 312  https://leetcode.com/problems/burst-balloons/                       |
+| 57 | Evaluate Boolean Expression    | ⬜     |                                                               | GFG variant                                                                 |
+| 58 | Scramble String                | ⬜     |                                                               | LC 87   https://leetcode.com/problems/scramble-string/                      |
+| 59 | Egg Dropping                   | ⬜     |                                                               | LC 1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/   |
+
+
+================================================================================
+CATEGORY 10: DP on Squares / Rectangles
+================================================================================
+State: dp[i][j] = largest square/rectangle ending at (i,j).
+
+| #  | Problem                        | Status | File Location | Link                                                                   |
+|----|--------------------------------|--------|---------------|------------------------------------------------------------------------|
+| 60 | Maximal Square                 | ⬜     |               | LC 221  https://leetcode.com/problems/maximal-square/                  |
+| 61 | Maximal Rectangle              | ⬜     |               | LC 85   https://leetcode.com/problems/maximal-rectangle/               |
+| 62 | Count Square Submatrices       | ⬜     |               | LC 1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/ |
+
+
+================================================================================
+CATEGORY 11: DP on Trees
+================================================================================
+Recursion returns info from children, parent combines it. State lives in the return value.
+
+| #  | Problem                        | Status | File Location | Link                                                                         |
+|----|--------------------------------|--------|---------------|------------------------------------------------------------------------------|
+| 63 | Diameter of Binary Tree        | ⬜     |               | LC 543  https://leetcode.com/problems/diameter-of-binary-tree/               |
+| 64 | Binary Tree Max Path Sum       | ⬜     |               | LC 124  https://leetcode.com/problems/binary-tree-maximum-path-sum/          |
+| 65 | Max Path Sum (Leaf to Leaf)    | ⬜     |               | GFG  https://www.geeksforgeeks.org/problems/maximum-path-sum/1               |
+| 66 | House Robber III (Tree)        | ⬜     |               | LC 337  https://leetcode.com/problems/house-robber-iii/                      |
+| 67 | Binary Tree Cameras            | ⬜     |               | LC 968  https://leetcode.com/problems/binary-tree-cameras/                   |
+
+
+================================================================================
+                            PROGRESS SUMMARY
+================================================================================
+
+| Category                          | Done | Total | Progress    |
+|-----------------------------------|------|-------|-------------|
+| 1. Intro to DP                    |  3   |   3   | ███████ 100%|
+| 2. 1D DP                         |  7   |  10   | █████░░  70%|
+| 3. 2D/3D DP & Grids              |  0   |   7   | ░░░░░░░   0%|
+| 4. 0-1 Knapsack                   |  5   |   7   | █████░░  71%|
+| 5. Unbounded Knapsack             |  3   |   5   | ████░░░  60%|
+| 6. DP on Strings / LCS            |  8   |  11   | █████░░  73%|
+| 7. DP on Stocks                   |  1   |   6   | █░░░░░░  17%|
+| 8. DP on LIS                      |  1   |   5   | █░░░░░░  20%|
+| 9. MCM / Partition DP             |  1   |   6   | █░░░░░░  17%|
+| 10. DP on Squares                 |  0   |   3   | ░░░░░░░   0%|
+| 11. DP on Trees                   |  0   |   5   | ░░░░░░░   0%|
+|-----------------------------------|------|-------|-------------|
+| TOTAL                             | 29   |  68   | ████░░░  43%|
+
+
+================================================================================
+                        RECOMMENDED ORDER OF STUDY
+================================================================================
+
+Phase 1 (Current):  Intro + 1D DP               ← YOU ARE HERE (almost done!)
+Phase 2 (Next):     2D/3D DP & Grids             ← Start with Ninja's Training
+Phase 3:            Finish 0-1 Knapsack           ← Target Sum, Count with Diff
+Phase 4:            Finish Unbounded Knapsack      ← Rod Cutting, Coin Change II
+Phase 5:            DP on Strings / LCS           ← Edit Distance, Distinct Subseq
+Phase 6:            DP on Stocks                  ← Work through all 6 in order
+Phase 7:            DP on LIS                     ← LIS + variations
+Phase 8:            MCM / Partition DP            ← Burst Balloons, Palindrome Part
+Phase 9:            DP on Squares                 ← Quick wins, 3 problems
+Phase 10:           DP on Trees                   ← Diameter, Max Path Sum, Robber III

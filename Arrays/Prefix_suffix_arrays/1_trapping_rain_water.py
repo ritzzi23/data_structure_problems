@@ -96,7 +96,8 @@ class Solution:
 
                 
 #Monotonic Stack Approach
-
+#Total Time Complexity: O(n)
+#Total Space Complexity: O(n)
 
 class Solution:
     def trap(self, height: List[int]) -> int:

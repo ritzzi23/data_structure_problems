@@ -1,11 +1,11 @@
+#Solve this problem using this technique
+
 #Time Complexity: O(V + E) where V is the number of vertices and E is the number of edges.
 #Space Complexity: O(V) for the visited array and the queue in the worst case.
 from collections import deque
 
 class Solution:
-
     def isCycle(self, V, adj):
-
         def bfs_helper(queue, adj_list, visited):
             while queue:
                 (node, parent) = queue.popleft()
@@ -43,6 +43,7 @@ class Solution:
         # Code here
         
         adj_list = defaultdict(list)
+        #Convert edges to adjacency list (Undirected Graph)
         for u, v in edges:
             adj_list[u].append(v)
             adj_list[v].append(u)

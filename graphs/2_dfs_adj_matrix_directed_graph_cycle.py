@@ -1,3 +1,7 @@
+#Time and space complexity of this code
+#Time complexity: O(V+E)
+#Space complexity: O(V+E) - adjacency list + visited + recursion stack
+
 from typing import List
 from collections import defaultdict
 class Solution:
@@ -7,7 +11,7 @@ class Solution:
             visited[node] = True
             in_recursion[node] = True
             
-            for neighbour in adj_list[node]:
+            for neighbour in adj_list[node]: 
                 if not visited[neighbour]:
                     if dfs_helper(neighbour,visited,in_recursion,adj_list):
                         return True

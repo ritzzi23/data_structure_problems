@@ -1,0 +1,85 @@
+Kadane's Algorithm
+
+Finds the maximum sum subarray in an array
+
+
+================================================================================
+Is it DP?
+================================================================================
+
+Yes, it's a space optimized bottom up DP
+State: dp[i] = maximum sum subarray ending at index i
+Just like House Robber, we compress dp array into 1 variable
+
+
+================================================================================
+The Choice at each element
+================================================================================
+
+Either extend previous subarray by adding nums[i]
+Or start fresh from nums[i] (if previous sum was negative, discard it)
+
+Recurrence:
+    dp[i] = max(nums[i], dp[i-1] + nums[i])
+
+Space optimized (single variable):
+    curr_sum = max(nums[i], curr_sum + nums[i])
+    max_sum  = max(max_sum, curr_sum)
+
+
+================================================================================
+Where Kadane is used
+================================================================================
+
+1. Maximum sum subarray              (base problem)
+2. Maximum product subarray           (modified Kadane, track min too)
+3. 2D grid - maximum sum rectangle    (Kadane on each row range)
+4. Circular subarray maximum sum      (Kadane + total_sum - min_subarray)
+
+
+================================================================================
+Why not Two Pointer / Sliding Window?
+================================================================================
+
+Sliding window works when all elements are positive
+You can expand/shrink window predictably
+Here array has negative numbers
+Adding an element can decrease the sum
+Shrinking window doesn't help because you don't know where the best subarray starts
+
+
+================================================================================
+Key Difference: Sliding Window vs Kadane
+================================================================================
+
+|                  | Sliding Window              | Kadane                          |
+|------------------|-----------------------------|---------------------------------|
+| Negative numbers | fails                       | handles                         |
+| Window boundary  | defined by condition        | resets when sum goes negative   |
+| Decision         | expand or shrink            | extend or restart               |
+
+Simple rule:
+    all positives → sliding window
+    has negatives → kadane (DP)
+
+
+================================================================================
+Why Kadane works
+================================================================================
+
+At each index the only question is:
+"Is my previous sum worth keeping or should I start fresh?"
+That's a DP decision, not a window decision
+Past state (curr_sum) determines current choice
+
+
+================================================================================
+Problems in this directory
+================================================================================
+
+| #  | File                                  | Status | Link                                                                  |
+|----|---------------------------------------|--------|-----------------------------------------------------------------------|
+| 01 | maximum_subarray.py                   | ✅     | LC 53   https://leetcode.com/problems/maximum-subarray/               |
+| 02 | maximum_product_subarray.py           | ✅     | LC 152  https://leetcode.com/problems/maximum-product-subarray/       |
+| 03 | maximum_sum_circular_subarray.py      | ⬜     | LC 918  https://leetcode.com/problems/maximum-sum-circular-subarray/  |
+| 04 | divide_conquer_maximum_subarray.py    | ⬜     | LC 53   (divide & conquer approach, not DP)                           |

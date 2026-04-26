@@ -1,3 +1,8 @@
+'''
+We are trying both paths
+If either path leads to capacity == 0 somewhere down the line
+We return True
+'''
 #Pure Recursive Solution
 # time complexity: O(2^n)
 # space complexity: O(n) for recursion stack

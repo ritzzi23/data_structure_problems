@@ -57,7 +57,8 @@ class Solution:
 #-----------------------------------------------------------------------------------
 #Best Solution
 #Monotonic Deque
-
+#Total Time Complexity: O(n)
+#Total Space Complexity: O(k)
 
 from collections import deque
 class Solution:
@@ -82,7 +83,7 @@ class Solution:
             #Always remove smaller values from back because we are appending from back and 
             #if the current element is greater than the last element then the last element is useless
             #because it can never be the maximum element in any future window
-            while dq and nums[dq[-1]] < nums[i]:
+            while dq and nums[dq[-1]] < nums[i]: #Time complexity: O(1)
                 dq.pop()
 
             #we keep appending till we reach the first valid window

@@ -1,0 +1,90 @@
+'''
+=== DISJOINT SET UNION (DSU / Union-Find) - Theory & Notes ===
+
+What is DSU?
+- A data structure that tracks elements split into non-overlapping (disjoint) groups/sets.
+- Two main operations:
+    1. Find(u)     → Who is the leader/root of u's group?
+    2. Union(u, v) → Merge the group of u with the group of v.
+
+---
+
+Core Components:
+    parent[] → Each node points to its parent. Root points to itself.
+    rank[]   → Approximate height of the tree (used in Union by Rank).
+    size[]   → Number of nodes in the group (used in Union by Size).
+
+Initialization:
+    parent[i] = i   → Every node is its own leader.
+    rank[i]   = 1   → Every tree has height 1.
+    size[i]   = 1   → Every group has 1 member.
+
+---
+
+Optimization 1: Path Compression (in findParent)
+    - While finding the root, rewire every node on the path to point directly to the root.
+    - Flattens the tree so future finds are nearly O(1).
+    - Example:
+        Before:  0 ← 1 ← 2 ← 3  (chain, O(n) to find root of 3)
+        After:   0 ← 1, 0 ← 2, 0 ← 3  (flat, O(1) for all)
+
+Optimization 2: Union by Rank
+    - When merging two groups, attach the SHORTER tree under the TALLER tree.
+    - Keeps the overall tree height small.
+    - If both trees have equal rank, pick either as root and increment its rank by 1.
+
+Optimization 3: Union by Size
+    - When merging two groups, attach the SMALLER group under the LARGER group.
+    - Update the size of the new root: size[root] += size[other].
+    - Advantage over rank: you can always query the exact size of any group.
+
+With both optimizations combined:
+    Time per operation: O(α(n)) where α = inverse Ackermann function.
+    α(n) ≤ 4 for any practical input size → effectively constant time.
+
+---
+
+Common DSU Problem Patterns:
+
+    Pattern                    | Example Problems
+    ---------------------------|-----------------------------------------------------
+    Connected Components       | Number of connected components, Number of Islands
+    Cycle Detection (Undirected)| If find(u) == find(v) BEFORE union(u,v) → cycle exists
+    Kruskal's MST              | Sort edges by weight, union if not in same set
+    Dynamic Connectivity       | "Are A and B connected after adding edge X?"
+    Account Merge              | Group accounts by shared emails
+    Redundant Connection       | Find the edge that creates a cycle
+    Making Network Connected   | Minimum cables to connect all computers
+    Number of Provinces        | Count distinct groups in a friend network
+
+---
+
+When to Use DSU vs BFS/DFS:
+
+    Use DSU when...                                    | Use BFS/DFS when...
+    ---------------------------------------------------|--------------------------------------------
+    Edges arrive incrementally (online)                | You have the full graph upfront
+    You need fast "are these connected?" queries       | You need to traverse/explore paths
+    You're building a Minimum Spanning Tree (Kruskal's)| You need shortest path or ordering (topo sort)
+    The problem is about merging groups                | The problem is about exploring neighbors
+
+---
+
+Cycle Detection with DSU (Undirected Graphs Only):
+    - Before doing union(u, v), check if find(u) == find(v).
+    - If YES → u and v are already in the same group → adding this edge creates a cycle.
+    - If NO  → safe to union, no cycle from this edge.
+    - NOTE: This does NOT work for directed graphs (use DFS with in_recursion for that).
+
+---
+
+Time & Space Complexity:
+    Time:  O(α(n)) per find/union operation (nearly constant)
+    Space: O(n) for parent, rank, and size arrays
+
+Memorable Analogy:
+    "Think of companies merging. Each company has a CEO (root).
+     When two companies merge, the smaller CEO reports to the bigger CEO (union by size).
+     Whenever any employee asks 'who is my CEO?', you update the org chart
+     so they report DIRECTLY to the CEO (path compression) — no middle managers needed."
+'''
