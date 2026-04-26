@@ -155,6 +155,9 @@ Thumbs.db
 # Log files
 *.log
 
+# Graphify knowledge graph
+graphify-out/
+
 # Output files
 output/
 results/
