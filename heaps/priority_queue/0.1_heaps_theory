@@ -1,0 +1,125 @@
+Heaps Theory
+=============
+
+Core Idea:
+- A heap is a complete binary tree stored as an array
+- Every parent is smaller (min-heap) or larger (max-heap) than its children
+- The root always holds the min (min-heap) or max (max-heap) element
+- NOT fully sorted -- only the parent-child relationship is guaranteed
+
+
+Array Representation:
+----------------------
+- Parent of index i     -> (i - 1) // 2
+- Left child of index i -> 2 * i + 1
+- Right child of index i -> 2 * i + 2
+- No pointers needed -- the array IS the tree
+
+
+Types:
+------
+
+Min-Heap:
+  - Root = smallest element
+  - Parent <= children
+  - Python default: heapq module
+  - Used for: k-th smallest, Dijkstra's, merge k sorted lists
+
+Max-Heap:
+  - Root = largest element
+  - Parent >= children
+  - Python trick: negate values with heapq (push -val, pop -val)
+  - Used for: k-th largest, last stone weight, scheduling by priority
+
+
+Key Operations and Complexities:
+----------------------------------
+Operation                |  Time Complexity
+------------------------|------------------
+Insert (heappush)        |  O(log n)
+Extract min/max (heappop)|  O(log n)
+Peek min/max (heap[0])   |  O(1)
+Build heap (heapify)     |  O(n)
+Search                   |  O(n) -- heap is NOT for searching
+
+
+When to Use Heaps:
+-------------------
+- Need the k-th largest or k-th smallest element
+- Need to repeatedly get the min or max from a dynamic dataset
+- Merging k sorted lists/arrays -- pop smallest from k heads
+- Dijkstra's shortest path -- always process the nearest unvisited node
+- Median from a data stream -- two heaps (max-heap for lower half, min-heap for upper half)
+- Task scheduling by priority -- process highest priority first
+- Heap sort -- O(n log n) in-place sorting
+
+
+When NOT to Use Heaps:
+-----------------------
+- Need to search for a specific value -- use hashmap or BST
+- Need sorted order of all elements -- just sort the array
+- Need FIFO processing -- use a queue
+- Need LIFO processing -- use a stack
+- Need to access elements by index -- use an array
+- Only need the single global min/max once -- just scan the array O(n)
+
+
+Simple Test:
+------------
+Ask yourself:
+  "Do I need to repeatedly get the smallest or largest element
+   from a collection that keeps changing?"
+
+  YES -> Heap is likely the right choice
+  NO  -> Think array, sorting, or hashmap
+
+
+Common Heap Patterns:
+----------------------
+
+1. Top-K Pattern
+   - "Find k largest/smallest elements"
+   - Use a heap of size k
+   - For k largest: use min-heap of size k (pop smallest when size > k)
+   - For k smallest: use max-heap of size k
+
+2. Two-Heap Pattern
+   - "Find median from a stream"
+   - Max-heap for lower half, min-heap for upper half
+   - Balance sizes so they differ by at most 1
+   - Median = top of max-heap (or average of both tops)
+
+3. Merge-K Pattern
+   - "Merge k sorted lists"
+   - Push first element from each list into min-heap
+   - Pop smallest, push next element from that list
+   - Repeat until heap is empty
+
+4. Greedy + Heap
+   - "Minimize cost" or "maximize profit" with choices
+   - Use heap to always pick the optimal next choice
+   - Examples: connect ropes, task scheduler, reorganize string
+
+
+Heap vs Priority Queue:
+------------------------
+- A heap is the DATA STRUCTURE (complete binary tree in an array)
+- A priority queue is the ABSTRACT INTERFACE (insert, extract-by-priority)
+- Priority queues are almost always IMPLEMENTED using heaps
+- In interviews, they are used interchangeably
+
+
+Python heapq Quick Reference:
+------------------------------
+  import heapq
+
+  heapq.heappush(heap, val)       # insert
+  heapq.heappop(heap)             # extract min
+  heap[0]                         # peek min (don't pop)
+  heapq.heapify(list)             # convert list to heap in O(n)
+  heapq.nlargest(k, iterable)     # k largest elements
+  heapq.nsmallest(k, iterable)    # k smallest elements
+
+  # Max-heap trick: push/pop negated values
+  heapq.heappush(heap, -val)
+  -heapq.heappop(heap)

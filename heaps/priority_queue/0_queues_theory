@@ -1,0 +1,79 @@
+Queues Theory
+==============
+
+Core Idea:
+- First-In, First-Out (FIFO) data structure
+- Enqueue adds to the back, Dequeue removes from the front
+- Elements are processed in the order they arrive
+- Think of it as a line at a store -- first person in line gets served first
+
+
+Types of Queues:
+-----------------
+
+Simple Queue (FIFO):
+  - Standard queue -- enqueue at back, dequeue from front
+  - Implementation: collections.deque in Python (O(1) both ends)
+
+Double-Ended Queue (Deque):
+  - Can add/remove from BOTH front and back
+  - Used for: sliding window maximum, palindrome checking
+  - Implementation: collections.deque in Python
+
+Priority Queue / Heap:
+  - Elements dequeued by priority, not insertion order
+  - Used for: Dijkstra's, k-th largest, merge k sorted lists
+  - Implementation: heapq module in Python (min-heap by default)
+  - See the heap problems in this folder for implementation details
+
+Circular Queue:
+  - Front and back wrap around using modulo arithmetic
+  - Used for: fixed-size buffers, round robin scheduling
+
+
+When to Use Queues:
+--------------------
+- BFS (Breadth-First Search) -- exploring nodes level by level in graphs/trees
+- Level-order tree traversal -- visiting nodes level by level
+- Task scheduling -- processing jobs in the order they arrive (print queue, CPU scheduling)
+- Message/event handling -- processing events or messages in arrival order
+- Rate limiting / throttling -- managing requests in order
+- Buffering -- streaming data, IO buffers, keyboard input buffers
+- Order processing systems -- tickets, customer service lines, food orders
+- Producer-consumer problems -- one side adds data, the other side processes it in order
+- Cache eviction (FIFO-based) -- removing the oldest cached item first
+
+
+When NOT to Use Queues:
+------------------------
+- Need LIFO order -- use a stack (undo operations, backtracking)
+- Need random access by index -- use an array
+- Need priority-based processing -- use a priority queue / heap
+- Need fast lookups by key -- use a hash map
+- Need to reverse elements -- a stack is more natural
+- Need to sort or search frequently -- arrays, trees, or heaps work better
+- Order of processing doesn't matter -- simpler structures like sets or lists may suffice
+- Need to remove from the middle frequently -- linked list or other structure is better
+
+
+Simple Test:
+------------
+Ask yourself:
+  "Do I need to process elements in the exact order they arrived?"
+
+  YES -> Queue is likely the right choice
+  NO  -> Think stack (LIFO), heap (priority), or hashmap (lookup)
+
+
+Queue vs Stack vs Heap:
+------------------------
+Need                                       |  Use
+------------------------------------------|--------------------
+Process in arrival order (FIFO)            |  Queue
+Process most recent first (LIFO)           |  Stack
+Process by priority (highest/lowest)       |  Heap / Priority Queue
+Process from both ends                     |  Deque
+BFS traversal                              |  Queue
+DFS traversal                              |  Stack
+K-th largest/smallest                      |  Heap
+Sliding window min/max                     |  Monotonic Deque

@@ -1,0 +1,58 @@
+Two Pointers Theory 
+====================
+
+Core Idea:
+- Use two pointers (indices) to traverse the data structure
+- Pointers move based on a clear condition, reducing the search space
+- Avoids brute force nested loops by making smart pointer decisions
+
+
+When Two Pointers Works:
+------------------------
+- Array/string is sorted or can be sorted
+- You're looking for pairs or triplets that satisfy a condition
+- You're partitioning in place (like Dutch flag, remove duplicates)
+- Comparing from both ends moving inward
+
+Examples:
+  - Two Sum (sorted)
+  - 3Sum
+  - Remove Duplicates
+  - Container With Most Water
+
+
+When Two Pointers Does NOT Work:
+---------------------------------
+- Data is unsorted and sorting would change the answer
+- Elements merge or shift after removal
+- You need backward context after moving forward
+- Problem involves counting consecutive elements with chain reactions
+
+
+Simple Test:
+------------
+Ask yourself:
+  "Can I make a decision about moving left or right pointer
+   based on a clear, simple condition?"
+
+  YES -> Two pointers likely works
+  NO  -> Think stack, hashmap, or sliding window
+
+
+Quick Reference:
+----------------
+Situation                                  |  Use Two Pointers?
+------------------------------------------|--------------------
+Sorted array, find pair                    |  ✅
+Partition in place                         |  ✅
+Remove duplicates in sorted array          |  ✅
+Unsorted, no clear pointer movement rule   |  ❌
+Removals cause merging/chain reactions     |  ❌
+Need previous context                      |  ❌
+
+
+Two Pointers vs Sliding Window:
+-------------------------------
+- Two Pointers    -- pointers move toward each other or independently
+- Sliding Window  -- both pointers move in the same direction, maintain a window between them
+- Sliding window is essentially a special case of two pointers

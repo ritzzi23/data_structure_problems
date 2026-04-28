@@ -1,0 +1,140 @@
+Linked List Theory
+===================
+
+What Linked List Actually Is:
+-----------------------------
+- Nodes connected by pointers
+- Each node stores value + reference to next (and prev if doubly)
+- No contiguous memory, no index access
+
+
+Types and When to Use Each:
+----------------------------
+
+Singly Linked List:
+  - Only need forward traversal
+  - Insert/delete at head frequently
+  - Problems: reverse, merge, detect cycle, find middle
+  - Real use: simple stack, hash chaining
+
+Doubly Linked List:
+  - Need both forward AND backward traversal
+  - Need to delete a node when you already have its reference
+  - Real use: LRU cache, undo/redo (step by 1), browser back/forward (step by 1), text editor cursor
+
+Circular Linked List:
+  - Data is naturally cyclic
+  - Real use: round robin scheduling, turn-based games, Josephus problem, looping playlist
+
+
+5 Situations Where Linked List is the RIGHT Choice:
+-----------------------------------------------------
+
+1. Frequent insert/delete at head
+   - Array insert at head -- O(n) shift everything
+   - Linked list -- O(1) just change pointer
+
+2. Frequent insert/delete in middle WITH node reference
+   - You already have pointer to the node
+   - DLL delete -- O(1) just relink prev and next
+   - Array delete -- O(n) shift everything
+
+3. Problem IS about pointer manipulation
+   - Reverse linked list
+   - Merge two sorted lists
+   - Reorder odd/even nodes
+   - Swap pairs
+   - The problem literally gives you a linked list
+
+4. LRU Cache (DLL + HashMap)
+   - Need O(1) access by key -- hashmap
+   - Need O(1) move to front / remove least recent -- DLL
+   - No other data structure combo does both in O(1)
+
+5. Unknown size, frequent structural changes
+   - Don't know how many elements ahead of time
+   - Elements constantly entering and leaving from random positions
+   - No need for index access
+
+
+When NOT to Use Linked List:
+-----------------------------
+
+1. Need index access
+   - "give me element at position 5"
+   - Array -- O(1)
+   - Linked list -- O(n) walk from head
+
+2. Need to search for a value
+   - "does 42 exist?"
+   - Hashset -- O(1)
+   - Linked list -- O(n) scan entire list
+
+3. Counting/frequency
+   - "how many times does 'a' appear?"
+   - Hashmap -- O(1) lookup
+   - Linked list -- useless here
+
+4. Subarray/substring/window problems
+   - Sliding window needs contiguous index-based access
+   - Linked list can't do windows
+
+5. Sorting
+   - Array sort -- O(n log n) clean
+   - Linked list sort -- O(n log n) but messy, cache unfriendly
+
+6. Simple stack/queue
+   - Just append/pop from ends
+   - Array or deque does this better
+   - Linked list has pointer overhead for no gain
+
+7. Jump by multiple steps
+   - "go back 5 steps"
+   - Array -- O(1) ptr -= 5
+   - Linked list -- O(5) walk 5 nodes
+
+
+Linked List vs Everything Else:
+--------------------------------
+I need to...                        |  Use
+------------------------------------|---------------------------
+Access by index                     |  Array
+Check existence                     |  Hashset
+Count frequency                     |  Hashmap
+LIFO push/pop                       |  Stack (array)
+FIFO enqueue/dequeue                |  Deque
+Find pairs in sorted data           |  Two pointers on array
+Window/subarray                     |  Sliding window on array
+Search sorted data                  |  Binary search on array
+Insert/delete at head fast          |  Singly linked list
+Insert/delete middle with ref       |  Doubly linked list
+LRU cache                           |  DLL + hashmap
+Manipulate node connections         |  Linked list
+Cyclic round robin                  |  Circular linked list
+Undo + redo step by 1              |  DLL
+Undo + redo jump by steps          |  Array + pointer
+Version branching                   |  Tree
+
+
+Interview Pattern Recognition:
+-------------------------------
+
+Problem gives you a linked list node?
+  -> It's a linked list problem, use pointer manipulation
+
+Problem says "design" with ordered insert/delete?
+  -> Probably DLL + hashmap (LRU style)
+
+Problem says "maintain order" + frequent middle changes?
+  -> Linked list
+
+Everything else?
+  -> Probably not linked list -- array/hashmap/stack/deque is almost always better
+
+
+One Liner:
+----------
+- Linked list = structure manipulation (changing connections)
+- Array = value manipulation (reading, computing, windowing)
+- If the problem is about what the data IS -- use array/hashmap
+- If the problem is about how nodes CONNECT -- use linked list

@@ -1,0 +1,48 @@
+Sliding Window Theory
+=====================
+
+Core Idea:
+- A window (subarray/substring) slides across the data
+- The window condition is monotonic -- you expand or shrink based on a clear rule
+- You maintain state about the current window and update it incrementally
+
+
+When Sliding Window Works:
+--------------------------
+- The answer lives inside a contiguous subarray/substring
+- The window has a monotonic condition -- you can clearly decide when to expand or shrink
+- No element outside the window affects elements inside it
+
+Examples:
+  - Longest substring without repeating characters
+  - Maximum sum subarray of size k
+  - Minimum window substring
+
+
+When Sliding Window Does NOT Work:
+-----------------------------------
+- Removals change the structure of the string/array
+- Elements merge after deletion, creating new conditions
+- You need to look backward after processing forward
+- The valid condition can appear at any point due to side effects of previous operations
+
+
+Simple Test to Know:
+--------------------
+Ask yourself:
+  "After I process/remove something, does the remaining data
+   change in a way that affects what I already passed?"
+
+  YES -> Sliding window won't work, think stack/deque
+  NO  -> Sliding window is likely fine
+
+
+Quick Reference:
+----------------
+Situation                                  |  Approach
+------------------------------------------|--------------------
+Fixed or variable window, no side effects  |  Sliding Window
+Removals trigger chain reactions           |  Stack
+Need previous context after removal        |  Stack
+Partitioning or comparing                  |  Two Pointers
+Monotonic queue needed                     |  Deque

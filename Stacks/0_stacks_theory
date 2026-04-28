@@ -1,0 +1,99 @@
+Stacks Theory
+==============
+
+Core Idea:
+- Last-In, First-Out (LIFO) data structure
+- Push adds to top, Pop removes from top
+- Only the top element is accessible at any time
+- Think of it as a stack of plates -- you can only take the top one
+
+
+When to Use Stacks:
+--------------------
+- Function call management -- tracking nested function calls and returns (the call stack)
+- Undo/redo functionality -- each action is pushed, undo pops the last one
+- Expression evaluation -- parsing and evaluating math expressions, postfix/prefix notation
+- Balanced parentheses/bracket matching -- push opening, pop and compare on closing
+- Backtracking algorithms -- DFS in graphs/trees, maze solving, explore a path and back up
+- Browser history -- back button behavior (most recent page first)
+- String reversal -- push all chars, pop them out in reverse
+- Syntax parsing / compilers -- tracking nested scopes, tokens, grammar rules
+- Removing adjacent duplicates -- push chars, pop when top matches current (chain reactions)
+
+
+When NOT to Use Stacks:
+------------------------
+- Need FIFO (First-In, First-Out) order -- use a queue (e.g., task scheduling, BFS)
+- Need random access by index -- use an array or list
+- Need to access both ends frequently -- use a deque
+- Need sorted order or priority-based access -- use a priority queue / heap
+- Need fast lookups by key -- use a hash map
+- Need to process elements in insertion order without reversing -- queue or linked list
+- Data doesn't have a nesting or depth-based relationship -- stack adds unnecessary complexity
+
+
+Simple Test:
+------------
+Ask yourself:
+  "Does this problem involve nesting, reversing, backtracking,
+   or undoing the most recent action?"
+
+  YES -> Stack is likely the right choice
+  NO  -> Think queue, deque, hashmap, or array
+
+
+Common Stack Patterns:
+-----------------------
+
+1. Matching / Balancing
+   - Valid parentheses, HTML tag matching
+   - Push opening, pop and compare on closing
+
+2. Monotonic Stack
+   - Next greater/smaller element
+   - Maintain increasing or decreasing order on the stack
+   - Used for: stock span, temperatures, histogram problems
+
+3. Stack + Count / Stack with Pairs (tuple stack)
+   - Instead of pushing raw elements, push (element, count) tuples
+   - Core idea: collapse consecutive duplicates into a single entry with a count
+   - How it works:
+       -> If top of stack has same element, increment its count
+       -> If count reaches k (or target), pop it off
+       -> Otherwise, push (element, 1) as a new entry
+   - Why it's powerful:
+       -> Handles chain reactions naturally -- after popping, the new top
+          might now match the next incoming element
+       -> Avoids re-scanning the string/array after removals
+   - When to use:
+       -> "Remove k adjacent duplicates" style problems
+       -> Run-length encoding / decoding
+       -> Any problem where consecutive same-elements need to be grouped or removed
+   - Example problems:
+       -> Remove All Adjacent Duplicates in String II (LeetCode 1209)
+       -> Remove All Adjacent Duplicates in String (LeetCode 1047)
+       -> Decoded String at Index with counting
+
+4. Expression Evaluation
+   - Infix to postfix conversion
+   - Evaluate postfix/prefix expressions
+   - Calculator problems (basic, with nested parentheses)
+
+5. DFS Simulation
+   - Iterative DFS using explicit stack instead of recursion
+   - Tree/graph traversal without call stack overflow
+
+
+Quick Reference:
+----------------
+Situation                                  |  Approach
+------------------------------------------|--------------------
+Matching brackets/parentheses              |  Stack
+Next greater/smaller element               |  Monotonic stack
+Remove adjacent duplicates                 |  Stack (or stack + count)
+Evaluate expression                        |  Stack
+Iterative DFS                              |  Stack
+Undo last action                           |  Stack
+Need FIFO order                            |  Queue (not stack)
+Need both ends                             |  Deque (not stack)
+Need min/max while using stack             |  Min stack (two stacks)
